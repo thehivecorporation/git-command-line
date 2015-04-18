@@ -21,7 +21,7 @@ describe('GIT-CLI', function(){
             done();
         });
 
-        Git.logging = true;
+        Git.logging = false;
     });
 
     describe('Main Functions: ', function(){
@@ -80,11 +80,9 @@ describe('GIT-CLI', function(){
 
         it('should push to local remote', function(done){
             Git.push('-u origin master').then(function(msg){
-                console.log(msg);
                 msg.should.contain('To /tmp/localRepo');
                 done();
             }).fail(function(err, stderr){
-                console.log(err);
                 done();
             });
         });
