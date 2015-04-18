@@ -33,6 +33,10 @@ var Git = {
         return execPromise('commit ' + command, options);
     },
 
+    config: function (command, options) {
+        return execPromise('config ' + command, options);
+    },
+
     diff: function (command, options) {
         return execPromise('diff ' + command, options);
     },

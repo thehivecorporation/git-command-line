@@ -55,6 +55,26 @@ describe('GIT-CLI', function(){
             }).fail(done);
         });
 
+        it('should add the credentials of user to commit', function(done){
+            Git.config('--local user.name "Mario Castro"').then(function(msg){
+                done();
+            }).fail(done);
+        });
+
+        it('should add the credentials of email to commit', function(done){
+            Git.config('--local user.email "mariocaster@gmail.com"').then(function(msg){
+                done();
+            }).fail(done);
+        });
+
+        it('should add credentials', function(done){
+            Git.config('--local user.name "Mario Castro"').then(function(msg){
+                return Git.config('--local user.email "mariocaster@gmail.com"');
+            }).then(function(msg){
+                done();
+            }).fail(done);
+        });
+
         it('should commit files', function(done){
             Git.commit('-m "My commit"', {cwd: folder })
                 .then(function(mesg){
