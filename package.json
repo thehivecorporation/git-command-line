@@ -1,0 +1,33 @@
+{
+  "name": "git-cli",
+  "version": "0.0.1",
+  "description": "A wrapper for command line git with promises",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sayden/git-cli.git"
+  },
+  "keywords": [
+    "git",
+    "cli",
+    "command",
+    "line",
+    "cvs"
+  ],
+  "author": "Mario Castro <mariocaster@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sayden/git-cli/issues"
+  },
+  "homepage": "https://github.com/sayden/git-cli",
+  "dependencies":{
+    "q":"^1.2.0"
+  },
+  "devDependencies":{
+    "mocha":"^2.2.4",
+    "chai":"^2.2.0"
+  }
+}
