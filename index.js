@@ -54,6 +54,9 @@ var Git = {
     },
 
     log: function (command, options) {
+        if(command === undefined){
+            command = '';
+        }
         return execPromise('log ' + command, options);
     },
 
@@ -66,6 +69,9 @@ var Git = {
     },
 
     pull: function (command, options) {
+        if(command === undefined){
+            command = '';
+        }
         return execPromise('pull ' + command, options);
     },
 
@@ -90,10 +96,16 @@ var Git = {
     },
 
     show: function (command, options) {
+        if(command === undefined){
+            command = '';
+        }
         return execPromise('show ' + command, options);
     },
 
     status: function (command, options) {
+        if(command === undefined){
+            command = '';
+        }
         return execPromise('status ' + command, options);
     },
 
@@ -114,12 +126,18 @@ function execPromise (command, options) {
 
     var exec = require('child_process').exec;
     var defer = Q.defer();
-    Git.logging ? console.log('Executing: ' + 'git ' + command) : undefined;
+
+    //Activate-Deactivate command logging execution
+    if(Git.logging) { console.log('Executing: ' + 'git ' + command); }
+
     exec('git ' + command, options, function (err, stdout, stderr) {
-        if (err || stderr) defer.reject({err: err, stderr: stderr});
-        else {
-            Git.logging ? console.log(stdout) : undefined;
-            defer.resolve(stdout);
+        //Activate-deactivate err and out logging
+        if(Git.logging) { console.log('Logging ---> ', {err:err, stdout:stdout, stderr:stderr}); }
+
+        if (err) {
+            defer.reject({err: err, stderr: stderr});
+        } else {
+            defer.resolve({res:stdout, out:stderr});
         }
     });
 
