@@ -21,30 +21,28 @@ var commitMessage = 'My commit';
 describe('GIT-CLI', function(){
     before(function(done){
         //Create a testing repository with two files
-        exec('mkdir -p ' + gitRepo + '; touch ' + gitRepo + '/' + file1 + '; touch ' + gitRepo + '/' + file2 +
-            '; mkdir -p ' + extRepo, function(err, stdout, stderr){
+        exec('mkdir -p ' + gitRepo +
+             '; touch ' + gitRepo + '/' + file1 +
+             '; touch ' + gitRepo + '/' + file2 +
+             '; mkdir -p ' + extRepo +
+             '; mkdir -p ' + localRepo, function(err, stdout, stderr){
             done();
         });
 
-        Git = new Git();
+        Git = new Git(gitRepo);
     });
 
     describe('Main Functions: ', function(){
         it('should create a local repo', function(done){
-            exec('mkdir -p ' + localRepo, function(err, stdout, stderr){
-                if(err || stderr) done(err);
-                else {
-                    Git.init('--bare ' + localRepo, {cwd: localRepo}).then(function(msg){
-                        msg.res.should.contain('Initialized');
-                        fs.existsSync(localRepo + '/HEAD').should.be.true;
-                        done();
-                    }).fail(done);
-                }
-            });
+            Git.init('--bare ' + localRepo, {cwd: localRepo}).then(function(msg){
+                msg.res.should.contain('Initialized');
+                fs.existsSync(localRepo + '/HEAD').should.be.true;
+                done();
+            }).fail(done);
         });
 
         it('should initialize a git repository', function(done){
-            Git.init(gitRepo, {cwd: gitRepo}).then(function(mesg){
+            Git.init(gitRepo).then(function(mesg){
                 fs.exists(gitRepo + '/.git', function(exists){
                     exists.should.be.true;
                     mesg.res.should.contain('Initialized');
@@ -54,7 +52,8 @@ describe('GIT-CLI', function(){
         });
 
         it('should add files from a folder', function(done){
-            Git.add('*', {cwd: gitRepo }).then(function(msg){
+            Git.setWorkingDirectory(gitRepo);
+            Git.add('*').then(function(msg){
                 msg.res.should.be.empty;
                 done();
             }).fail(done);
@@ -256,6 +255,11 @@ describe('GIT-CLI', function(){
             Git.getLog().should.be.true;
             Git.setLog(false);
             Git.getLog().should.be.false;
+        });
+
+        it('should set and get the working directory', function(){
+            Git.setWorkingDirectory(gitRepo);
+            Git.getWorkingDirectory().should.be.equals(gitRepo);
         });
 
         it('should allow the execution of tag command', function(done){

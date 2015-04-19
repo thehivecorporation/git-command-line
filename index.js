@@ -4,10 +4,24 @@
 
 var Q = require('q');
 
-module.exports = function(){
-
+module.exports = function(workingPath){
     var workingDirectory = '.';
     var logging = false;
+
+    if(workingPath){
+        console.log('asdfasdf');
+        workingDirectory = workingPath;
+    } else {
+        //Do nothing
+    }
+
+    this.setWorkingDirectory = function(newPath){
+        workingDirectory = newPath;
+    };
+
+    this.getWorkingDirectory = function(){
+        return workingDirectory;
+    };
 
     this.setLog = function(isLogging){
         logging = isLogging;
@@ -149,9 +163,9 @@ module.exports = function(){
      * Prints logs of command excution if activated
      * @param command   The command that will be executed
      */
-    var printCommandExecution = function(command){
+    var printCommandExecution = function(command, options){
         if(logging || false)
-            console.log('Executing: ' + 'git ' + command);
+            console.log('Executing: ' + 'git ' + command + ' with options ', options);
     };
 
     /**
@@ -177,7 +191,7 @@ module.exports = function(){
         options = prepareOptions(options);
 
         //Activate-Deactivate command logging execution
-        printCommandExecution(command);
+        printCommandExecution(command, options);
 
         exec('git ' + prepareCommand(command), options, function (err, stdout, stderr) {
             //Activate-deactivate err and out logging

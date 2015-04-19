@@ -13,28 +13,40 @@ Git-command-line is a wrapper for command line Git so, you must have git install
 
 * Common sintax is:
 ```javascript
-Git.[git command]([string parameters], [options]).then(function(res){}).fail(function(err){});
+var GitCommandLine = require('git-command-line');
+var Git = new GitCommandLine('/tmp/gitTemp');
+//You can also create it only with GitCommandLine() and set the working path later
+Git.[git command]([string parameters], [options])
+  .then(function(res){
+    //Then
+  }).
+  fail(function(err){
+    //Fail
+  });
 ```
 
 ### Some examples
 
 * To add all files in /tmp/git and the commit them
-    ```javascript
-    Git.add('*', {cwd:'/tmp/git'}).then(function(msg){
-        return Git.commit('-m "My commit");
-    }).then(function(res){
-        console.log(res);
-    }.fail(function(err){
-        console.error(err);
-    });
-    ```
+```javascript
+Git.add('*', {cwd:'/tmp/git'}).then(function(msg){
+    return Git.commit('-m "My commit");
+}).then(function(res){
+    console.log(res);
+}.fail(function(err){
+    console.error(err);
+});
+```
 
 * To commit staged files with message "My commit" on the last working folder if any or current one
-    ```javascript
-    Git.commit('-m "My commit"').then(function(msg){
+```javascript
+Git.commit('-m "My commit"')
+  .then(function(msg){
         console.log(msg)
-    });
-    ```
+}).fail(function(err){
+    console.log(err);
+});
+```
 
 ### API
 
@@ -64,9 +76,12 @@ Same as 'git commit [command]'
 * Examples
 ```javascript
     var myGitRepo = '/tmp/gitTemp';     //This is where the command will be executed
-    Git.commit('-m "My commit"', {cwd:myGitRepo}).then(function(msg){
+    Git.commit('-m "My commit"', {cwd:myGitRepo})
+      .then(function(msg){
         console.log(msg)
-    });
+      }).fail(function(err){
+        console.log(err);
+      });
 ```
 
 #### Git.diff(command, options);
@@ -116,8 +131,21 @@ Same as 'git status [command]' or simply 'git status' if no param specified
 
 * Examples
 ```javascript
-git status
-git status -h
+    Git.status()
+    .then(function(res){
+      console.log(res);
+    }).fail(function(err){
+      console.log(err);
+    });
+
+    //Or...
+
+    Git.status('-h')
+    .then(function(res){
+      console.log(res);
+    }).fail(function(err){
+      console.log(err);
+    });
 ```
 
 #### Git.tag(command, options);
@@ -127,3 +155,15 @@ Same as 'git tag [command]'
 ```javascript
 Git.tag('0.1.0').then(function(res){
     console.log(res)';
+
+#### Git.setWorkingDirectory(newPath)
+Sets the working path for the following git commands
+
+#### Git.getWorkingpath()
+Returns the current working path
+
+#### Git.setLog(boolean)
+Sets the logging of the Git command line responses
+
+#### Git.getLog()
+Returns the state of the logging
