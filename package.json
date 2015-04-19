@@ -1,11 +1,13 @@
 {
   "name": "git-cli",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A wrapper for command line git with promises",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "cover": "istanbul cover node_modules/.bin/_mocha"
+    "test":"istanbul cover node_modules/.bin/_mocha ; CODECLIMATE_REPO_TOKEN=8a405b00f1c4f57094cdd768148c11a3bd905bf3b03f29edc4236bfec304614d codeclimate < coverage/lcov.info",
+    "instrument": "istanbul instrument . -o instrument",
+    "cover":"istanbul cover node_modules/.bin/_mocha",
+    "report":"istanbul report"
   },
   "repository": {
     "type": "git",

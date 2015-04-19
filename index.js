@@ -4,144 +4,194 @@
 
 var Q = require('q');
 
-var Git = {
+module.exports = function(){
 
-    workingDirectory: '.',
-    logging: true,
+    var workingDirectory = '.';
+    var logging = false;
 
-    add: function (command, options) {
-        return execPromise('add ' + command, options);
-    },
+    this.setLog = function(isLogging){
+        logging = isLogging;
+    };
 
-    bisect: function (command, options) {
-        return execPromise('bisect ' + command, options);
-    },
+    this.getLog = function(){
+        return logging;
+    };
 
-    branch: function (command, options) {
-        return execPromise('branch ' + command, options);
-    },
+    this.add = function (command, options) {
+        return execPromise('add ' + prepareCommand(command), options);
+    };
 
-    checkout: function (command, options) {
-        return execPromise('checkout ' + command, options);
-    },
+    this.bisect = function (command, options) {
+        return execPromise('bisect ' + prepareCommand(command), options);
+    };
 
-    clone: function (command, options) {
-        return execPromise('clone ' + command, options);
-    },
+    this.branch = function (command, options) {
+        return execPromise('branch ' + prepareCommand(command), options);
+    };
 
-    commit: function (command, options) {
-        return execPromise('commit ' + command, options);
-    },
+    this.checkout = function (command, options) {
+        return execPromise('checkout ' + prepareCommand(command), options);
+    };
 
-    config: function (command, options) {
-        return execPromise('config ' + command, options);
-    },
+    this.clone = function (command, options) {
+        return execPromise('clone ' + prepareCommand(command), options);
+    };
 
-    diff: function (command, options) {
-        return execPromise('diff ' + command, options);
-    },
+    this.commit = function (command, options) {
+        return execPromise('commit ' + prepareCommand(command), options);
+    };
 
-    fetch: function (command, options) {
-        return execPromise('fetch ' + command, options);
-    },
+    this.config = function (command, options) {
+        return execPromise('config ' + prepareCommand(command), options);
+    };
 
-    grep: function (command, options) {
-        return execPromise('grep ' + command, options);
-    },
+    this.diff = function (command, options) {
+        return execPromise('diff ' + prepareCommand(command), options);
+    };
 
-    init: function (command, options) {
-        return execPromise('init ' + command, options);
-    },
+    this.fetch = function (command, options) {
+        return execPromise('fetch ' + prepareCommand(command), options);
+    };
 
-    log: function (command, options) {
+    this.grep = function (command, options) {
+        return execPromise('grep ' + prepareCommand(command), options);
+    };
+
+    this.init = function (command, options) {
+        return execPromise('init ' + prepareCommand(command), options);
+    };
+
+    this.log = function (command, options) {
+        return execPromise('log ' + prepareCommand(command), options);
+    };
+
+    this.merge = function (command, options) {
+        return execPromise('merge ' + prepareCommand(command), options);
+    };
+
+    this.mv = function (command, options) {
+        return execPromise('mv ' + prepareCommand(command), options);
+    };
+
+    this.pull = function (command, options) {
+        return execPromise('pull ' + prepareCommand(command), options);
+    };
+
+    this.push = function (command, options) {
+        return execPromise('push ' + prepareCommand(command), options);
+    };
+
+    this.rebase = function (command, options) {
+        return execPromise('rebase ' + prepareCommand(command), options);
+    };
+
+    this.remote = function (command, options) {
+        return execPromise('remote ' + prepareCommand(command), options);
+    };
+
+    this.reset = function (command, options) {
+        return execPromise('reset ' + prepareCommand(command), options);
+    };
+
+    this.rm = function (command, options) {
+        return execPromise('rm ' + prepareCommand(command), options);
+    };
+
+    this.show = function (command, options) {
+        return execPromise('show ' + prepareCommand(command), options);
+    };
+
+    this.status = function (command, options) {
+        return execPromise('status ' + prepareCommand(command), options);
+    };
+
+    this.tag = function (command, options) {
+        return execPromise('tag ' + prepareCommand(command), options);
+    };
+
+    this.direct = function(command, options){
+        return execPromise(prepareCommand(command), options);
+    };
+
+
+    /**
+     * Prepares the command string to be valid in case that is not included in the params
+     * @param command
+     * @returns {*}
+     */
+    var prepareCommand = function(command){
         if(command === undefined){
-            command = '';
-        }
-        return execPromise('log ' + command, options);
-    },
-
-    merge: function (command, options) {
-        return execPromise('merge ' + command, options);
-    },
-
-    mv: function (command, options) {
-        return execPromise('mv ' + command, options);
-    },
-
-    pull: function (command, options) {
-        if(command === undefined){
-            command = '';
-        }
-        return execPromise('pull ' + command, options);
-    },
-
-    push: function (command, options) {
-        return execPromise('push ' + command, options);
-    },
-
-    rebase: function (command, options) {
-        return execPromise('rebase ' + command, options);
-    },
-
-    remote: function (command, options) {
-        return execPromise('remote ' + command, options);
-    },
-
-    reset: function (command, options) {
-        return execPromise('reset ' + command, options);
-    },
-
-    rm: function (command, options) {
-        return execPromise('rm ' + command, options);
-    },
-
-    show: function (command, options) {
-        if(command === undefined){
-            command = '';
-        }
-        return execPromise('show ' + command, options);
-    },
-
-    status: function (command, options) {
-        if(command === undefined){
-            command = '';
-        }
-        return execPromise('status ' + command, options);
-    },
-
-    tag: function (command, options) {
-        return execPromise('tag ' + command, options);
-    }
-};
-
-function execPromise (command, options) {
-    if (!options) {
-        options = {
-            cwd: Git.workingDirectory
-        };
-    } else {
-        options.cwd = options.cwd || Git.workingDirectory;
-        Git.workingDirectory = options.cwd;
-    }
-
-    var exec = require('child_process').exec;
-    var defer = Q.defer();
-
-    //Activate-Deactivate command logging execution
-    if(Git.logging) { console.log('Executing: ' + 'git ' + command); }
-
-    exec('git ' + command, options, function (err, stdout, stderr) {
-        //Activate-deactivate err and out logging
-        if(Git.logging) { console.log('Logging ---> ', {err:err, stdout:stdout, stderr:stderr}); }
-
-        if (err) {
-            defer.reject({err: err, stderr: stderr});
+            return '';
         } else {
-            defer.resolve({res:stdout, out:stderr});
+            return command;
         }
-    });
+    };
 
-    return defer.promise;
-}
+    /**
+     * Prepare options to use the set working directory in the following commands
+     * @param options
+     * @returns {*}
+     */
+    var prepareOptions = function(options){
+        if (!options) {
+            return options = {
+                cwd: workingDirectory
+            };
+        } else {
+            workingDirectory = options.cwd;
+            return options;
+        }
+    };
 
-module.exports = Git;
+    /**
+     * Prints logs of command excution if activated
+     * @param command   The command that will be executed
+     */
+    var printCommandExecution = function(command){
+        var log = logging || false;
+        if(log == true){
+            console.log('Executing: ' + 'git ' + command);
+        } else {
+            console.log('');
+        }
+    };
+
+    /**
+     * Prints the response of an exec execution
+     * @param res
+     */
+    var printCommandResponse = function(res){
+        if(logging || false)
+            console.log('Logging ---> ', res);
+    };
+
+    /**
+     * Main function to use the command line tools to execute git commands
+     * @param command   Command to execute. Do not include 'git ' prefix
+     * @param options   Options available in exec command https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback
+     * @returns {promise|*|Q.promise}
+     */
+    var execPromise = function (command, options) {
+        var exec = require('child_process').exec;
+        var defer = Q.defer();
+
+        //Prepare the options object to be valid
+        options = prepareOptions(options);
+
+        //Activate-Deactivate command logging execution
+        printCommandExecution(command);
+
+        exec('git ' + prepareCommand(command), options, function (err, stdout, stderr) {
+            //Activate-deactivate err and out logging
+            printCommandResponse({err:err, stdout:stdout, stderr:stderr});
+
+            if (err) {
+                defer.reject({err: err, stderr: stderr});
+            } else {
+                defer.resolve({res:stdout, out:stderr});
+            }
+        });
+
+        return defer.promise;
+    };
+};

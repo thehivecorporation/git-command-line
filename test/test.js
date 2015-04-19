@@ -26,7 +26,9 @@ describe('GIT-CLI', function(){
             done();
         });
 
-        Git.logging = false;
+        Git = new Git();
+
+        //Git.logging = true;
     });
 
     describe('Main Functions: ', function(){
@@ -158,6 +160,113 @@ describe('GIT-CLI', function(){
                 done();
             }).fail(done);
         });
+
+        it('should reset the repo', function(done){
+            Git.reset().then(function(res){
+                res.out.should.be.empty;
+                res.res.should.contain('Unstaged changes');
+                done();
+            }).fail(done);
+        });
+
+        it('should allow the use of the bisect command', function(done){
+            Git.bisect('start').then(function(res){
+                res.res.should.be.empty;
+                res.out.should.be.empty;
+                done();
+            }).fail(done);
+        });
+
+        it('should allow the use of the rebase command', function(done){
+            Git.rebase('master').then(function(res){
+                done()
+            }).fail(function(err){
+                err.stderr.should.contain('Cannot rebase');
+                done();
+            });
+        });
+
+        it('should allow the direct execution of a command', function(done){
+            Git.direct('status').then(function(res){
+                res.res.should.contain('On branch');
+                done();
+            }).fail(done);
+        });
+
+        it('should allow the use of the diff command', function(done){
+            Git.diff(file2).then(function(res){
+                res.res.should.be.empty;
+                done();
+            }).fail(done);
+        });
+
+        it('should allow to fetch content', function(done){
+            Git.fetch().then(function(res){
+                res.res.should.be.empty;
+                done()
+            }).fail(done);
+        });
+
+        it('should allow to use of command grep', function(done){
+            //Add some text into the file2
+            var exampleCode = 'example code';
+            exec('echo "example code" >> ' + file2, {cwd:gitRepo}, function(err, stdout, stderr){
+                Git.grep('example', {cwd:gitRepo}).then(function(res){
+                    res.out.should.be.empty;
+                    res.res.should.contain(exampleCode);
+                    done()
+                }).fail(done);
+            });
+        });
+
+        it('should rename the file2 to zxcvb and the back to original name', function(done){
+            var newName = 'zxcvb';
+            Git.mv(file2 + ' ' + newName).then(function(res){
+                res.res.should.be.empty;
+                res.out.should.be.empty;
+                fs.existsSync(gitRepo + '/' + newName).should.be.true;
+                fs.existsSync(gitRepo + '/' + file2).should.be.false;
+                return Git.mv(newName + ' ' + file2);
+            }).then(function(res){
+                res.res.should.be.empty;
+                res.out.should.be.empty;
+                fs.existsSync(gitRepo + '/' + file2).should.be.true;
+                fs.existsSync(gitRepo + '/' + newName).should.be.false;
+                done();
+            }).fail(done);
+        });
+
+        it('should merge the test branch on master',function(done){
+            //First, we're in test so lets add all changes and commit them
+            Git.add('*').then(function(res){
+                res.res.should.be.empty;
+                return Git.commit('-m "new commit"');
+            }).then(function(res){
+                return Git.checkout('master');
+            }).then(function(res){
+                //Now we're in master so merge the branch test
+                return Git.merge('test');
+            }).then(function(res){
+                res.out.should.be.empty;
+                res.res.should.contain('Updating').and.contain(file2);
+                done();
+            }).fail(done);
+        });
+
+        it('should set on and off logging', function(){
+            Git.setLog(true);
+            Git.getLog().should.be.true;
+            Git.setLog(false);
+            Git.getLog().should.be.false;
+        });
+
+        it('should allow the execution of tag command', function(done){
+            Git.tag("-a 'asdf' -m 'asdf'").then(function(res){
+                res.res.should.be.empty;
+                res.out.should.be.empty;
+                done();
+            });
+        })
     });
 
     after(function(done){
