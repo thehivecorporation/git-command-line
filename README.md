@@ -1,4 +1,4 @@
-![Build Status](https://travis-ci.org/sayden/git-cli.svg?branch=master)
+![Build Status](https://travis-ci.org/sayden/git-command-line.svg?branch=master)
 [![Code Climate](https://codeclimate.com/github/sayden/git-cli/badges/gpa.svg)](https://codeclimate.com/github/sayden/git-cli)
 [![Test Coverage](https://codeclimate.com/github/sayden/git-cli/badges/coverage.svg)](https://codeclimate.com/github/sayden/git-cli)
 [![Dependency Status](https://gemnasium.com/sayden/git-cli.svg)](https://gemnasium.com/sayden/git-cli)
