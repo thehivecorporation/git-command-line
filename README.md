@@ -1,4 +1,6 @@
 ![Build Status](https://travis-ci.org/sayden/git-cli.svg?branch=master)
+[![Code Climate](https://codeclimate.com/github/sayden/git-cli/badges/gpa.svg)](https://codeclimate.com/github/sayden/git-cli)
+[![Test Coverage](https://codeclimate.com/github/sayden/git-cli/badges/coverage.svg)](https://codeclimate.com/github/sayden/git-cli)
 
 # (WIP) git-cli
 A wrapper for command line git with promises
