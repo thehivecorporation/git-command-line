@@ -148,12 +148,8 @@ module.exports = function(){
      * @param command   The command that will be executed
      */
     var printCommandExecution = function(command){
-        var log = logging || false;
-        if(log == true){
+        if(logging || false)
             console.log('Executing: ' + 'git ' + command);
-        } else {
-            console.log('');
-        }
     };
 
     /**
