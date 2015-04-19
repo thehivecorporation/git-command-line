@@ -1,5 +1,5 @@
 {
-  "name": "git-cli",
+  "name": "git-command-line",
   "version": "0.1.0",
   "description": "A wrapper for command line git with promises",
   "main": "index.js",
@@ -23,9 +23,9 @@
   "author": "Mario Castro <mariocaster@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sayden/git-cli/issues"
+    "url": "https://github.com/sayden/git-cmd/issues"
   },
-  "homepage": "https://github.com/sayden/git-cli",
+  "homepage": "https://github.com/sayden/git-cmd",
   "dependencies":{
     "q":"^1.2.0"
   },

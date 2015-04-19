@@ -1,16 +1,18 @@
 ![Build Status](https://travis-ci.org/sayden/git-cli.svg?branch=master)
 [![Code Climate](https://codeclimate.com/github/sayden/git-cli/badges/gpa.svg)](https://codeclimate.com/github/sayden/git-cli)
 [![Test Coverage](https://codeclimate.com/github/sayden/git-cli/badges/coverage.svg)](https://codeclimate.com/github/sayden/git-cli)
+[![Dependency Status](https://gemnasium.com/sayden/git-cli.svg)](https://gemnasium.com/sayden/git-cli)
+[![Codacy Badge](https://www.codacy.com/project/badge/7bb54a42e9144690a2d07719edfe5249](https://www.codacy.com/app/mariocaster/git-cli)
 
-# git-cli
+# git-command-line
 A wrapper for command line git with promises
 
 ## How to use it
-Git-cli is a wrapper for command line Git so, you must have git installed in your linux / mac machine (it has not been tested in windows yet).
+Git-command-line is a wrapper for command line Git so, you must have git installed in your linux / mac machine (it has not been tested in windows yet).
 
 * Common sintax is:
 ```javascript
-Git.[git command]([string parameters], [options]);
+Git.[git command]([string parameters], [options]).then(function(res){}).fail(function(err){});
 ```
 
 ### Some examples

@@ -27,8 +27,6 @@ describe('GIT-CLI', function(){
         });
 
         Git = new Git();
-
-        //Git.logging = true;
     });
 
     describe('Main Functions: ', function(){

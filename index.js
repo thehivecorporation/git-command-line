@@ -134,9 +134,11 @@ module.exports = function(){
      */
     var prepareOptions = function(options){
         if (!options) {
-            return options = {
+            var options = {
                 cwd: workingDirectory
             };
+
+            return options;
         } else {
             workingDirectory = options.cwd;
             return options;
