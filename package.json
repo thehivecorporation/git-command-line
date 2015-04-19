@@ -1,6 +1,6 @@
 {
   "name": "git-command-line",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "A wrapper for command line git with promises",
   "main": "index.js",
   "scripts": {
