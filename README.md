@@ -40,7 +40,7 @@ Git.[git command]([string parameters], [options])
 * To add all files in /tmp/git and the commit them
 ```javascript
 Git.add('*', {cwd:'/tmp/git'}).then(function(msg){
-    return Git.commit('-m "My commit");
+    return Git.commit('-m "My commit"');
 }).then(function(res){
     console.log(res);
 }.fail(function(err){
