@@ -9,7 +9,6 @@ module.exports = function(workingPath){
     var logging = false;
 
     if(workingPath){
-        console.log('asdfasdf');
         workingDirectory = workingPath;
     } else {
         //Do nothing
