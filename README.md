@@ -4,6 +4,16 @@
 [![Dependency Status](https://gemnasium.com/sayden/git-cli.svg)](https://gemnasium.com/sayden/git-cli)
 [![Codacy Badge](https://www.codacy.com/project/badge/7bb54a42e9144690a2d07719edfe5249)](https://www.codacy.com/app/mariocaster/git-cli)
 ![Codeship](https://codeship.com/projects/6965bf40-c8e1-0132-9fd7-5e07eb4da99e/status?branch=master)
+[![NPM Version](https://img.shields.io/npm/v/git-command-line.svg?style=flat)](https://www.npmjs.com/package/git-command-line)
+![Downloads](https://img.shields.io/npm/dm/git-command-line.svg?style=flat)
+![Tests](https://img.shields.io/badge/tests-28%2F28-green.svg)
+![Statements](https://img.shields.io/badge/Statements-97.78%25%20(%2088%2F90%20)-green.svg)
+![Branches](https://img.shields.io/badge/Branches-81.25%25%20(%2013%2F16%20)-green.svg)
+![Functions](https://img.shields.io/badge/Functions-100%25%20(%2035%2F35%20)-green.svg)
+![Lines](https://img.shields.io/badge/Lines-97.78%25%20(%2088%2F90%20)-green.svg)
+
+
+=======
 
 # git-command-line
 A wrapper for command line git with promises
@@ -42,7 +52,7 @@ Git.add('*', {cwd:'/tmp/git'}).then(function(msg){
 ```javascript
 Git.commit('-m "My commit"')
   .then(function(msg){
-        console.log(msg)
+    console.log(msg)
 }).fail(function(err){
     console.log(err);
 });
@@ -54,6 +64,22 @@ Options parameter is to tweak the 'exec' command as described in:
 https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback
 
 There is a special situation. Once you stablish cwd in the options param, it will be maintained through the rest of thecommands
+
+### Git.direct(command,options);
+Git direct allows the direct execution of a Git command implicitly on the 'command' param
+
+* Examples
+```javascript
+    var myGitRepo = '/tmp/gitTemp';     //This is where the command will be executed
+    var Git = new Git(myGitRepo);
+    
+    Git.direct('init')
+      .then(function(res){      //Equivalent to 'git init'
+        Git.direct('add *');                      //Equivalent to 'git add *'
+    }).then(function(err){
+        console.error(err)
+    });
+```
 
 #### Git.add(command, options);
 Same as 'git add [command]'
@@ -76,7 +102,9 @@ Same as 'git commit [command]'
 * Examples
 ```javascript
     var myGitRepo = '/tmp/gitTemp';     //This is where the command will be executed
-    Git.commit('-m "My commit"', {cwd:myGitRepo})
+    var Git = new Git(myGitRepo);
+    
+    Git.commit('-m "My commit"', {cwd:myGitRepo})       //Equivalent to 'git commit -m "My commit"'
       .then(function(msg){
         console.log(msg)
       }).fail(function(err){
