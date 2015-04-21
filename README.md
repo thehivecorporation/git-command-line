@@ -62,7 +62,7 @@ Git.[git command]([string parameters], [options])
         return Git.commit('-m "My commit"');
         
     }).then(function(res){
-        return Git.remote('add ' + remoteName + ' + remoteUrl);
+        return Git.remote('add ' + remoteName + ' ' + remoteUrl);
     
     }).then(function(res){
         return Git.push('-u ' + remoteName + ' master');
@@ -91,29 +91,29 @@ Git.commit('-m "My commit"')
 
 Initially, following commands are available:
 
-* *add*        Add file contents to the index
-* *bisect*     Find by binary search the change that introduced a bug
-* *branch*     List, create, or delete branches
-* *checkout*   Checkout a branch or paths to the working tree
-* *clone*      Clone a repository into a new directory
-* *commit*     Record changes to the repository
-* *diff*       Show changes between commits, commit and working tree, etc
-* *direct*     Allows the direct execution of a git command that is not available in the API yet
-* *fetch*      Download objects and refs from another repository
-* *grep*       Print lines matching a pattern
-* *init*       Create an empty Git repository or reinitialize an existing one
-* *log*        Show commit logs
-* *merge*      Join two or more development histories together
-* *mv*         Move or rename a file, a directory, or a symlink
-* *pull*       Fetch from and integrate with another repository or a local branch
-* *push*       Update remote refs along with associated objects
-* *rebase*     Forward-port local commits to the updated upstream head
-* *remote*     Manage set of tracked repositories
-* *reset*      Reset current HEAD to the specified state
-* *rm*         Remove files from the working tree and from the index
-* *show*       Show various types of objects
-* *status*     Show the working tree status
-* *tag*        Create, list, delete or verify a tag object signed with GPG
+* **add**        Add file contents to the index
+* **bisect**     Find by binary search the change that introduced a bug
+* **branch**     List, create, or delete branches
+* **checkout**   Checkout a branch or paths to the working tree
+* **clone**      Clone a repository into a new directory
+* **commit**     Record changes to the repository
+* **diff**       Show changes between commits, commit and working tree, etc
+* **direct**     Allows the direct execution of a git command that is not available in the API yet
+* **fetch**      Download objects and refs from another repository
+* **grep**       Print lines matching a pattern
+* **init**       Create an empty Git repository or reinitialize an existing one
+* **log**        Show commit logs
+* **merge**      Join two or more development histories together
+* **mv**         Move or rename a file, a directory, or a symlink
+* **pull**       Fetch from and integrate with another repository or a local branch
+* **push**       Update remote refs along with associated objects
+* **rebase**     Forward-port local commits to the updated upstream head
+* **remote**     Manage set of tracked repositories
+* **reset**      Reset current HEAD to the specified state
+* **rm**         Remove files from the working tree and from the index
+* **show**       Show various types of objects
+* **status**     Show the working tree status
+* **tag**        Create, list, delete or verify a tag object signed with GPG
 
 Options parameter is to tweak the 'exec' command as described in:
 https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback
