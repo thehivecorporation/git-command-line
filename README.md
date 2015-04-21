@@ -35,17 +35,44 @@ Git.[git command]([string parameters], [options])
   });
 ```
 
+=======
+
 ### Some examples
 
-* To add all files in /tmp/git and the commit them
+* To Git init /tmp/git folder, add all files on it, commit, add a new remote and push master to it
+
 ```javascript
-Git.add('*', {cwd:'/tmp/git'}).then(function(msg){
-    return Git.commit('-m "My commit"');
-}).then(function(res){
-    console.log(res);
-}.fail(function(err){
-    console.error(err);
-});
+    var GitCommandLine = require('git-command-line');
+    
+    //Variables
+    var gitFolder = '/tmp/gitTemp';
+    var remoteName = 'origin';
+    var remoteUrl = 'https://example.remote.repo';
+    
+    //Create a new Git object
+    var Git = new GitCommandLine(gitFolder);
+    
+    //Execute the chain
+    Git.init()
+    
+    .then(function(res){
+        return Git.add('*', {cwd:'/tmp/git'})
+        
+    }).then(function(res){
+        return Git.commit('-m "My commit"');
+        
+    }).then(function(res){
+        return Git.remote('add ' + remoteName + ' + remoteUrl);
+    
+    }).then(function(res){
+        return Git.push('-u ' + remoteName + ' master');
+        
+    }).then(function(res){
+        console.log('Success: ', res);
+    
+    }).fail(function(err){
+        console.error(err);
+    });
 ```
 
 * To commit staged files with message "My commit" on the last working folder if any or current one
@@ -58,7 +85,35 @@ Git.commit('-m "My commit"')
 });
 ```
 
+=======
+
 ### API
+
+Initially, following commands are available:
+
+* *add*        Add file contents to the index
+* *bisect*     Find by binary search the change that introduced a bug
+* *branch*     List, create, or delete branches
+* *checkout*   Checkout a branch or paths to the working tree
+* *clone*      Clone a repository into a new directory
+* *commit*     Record changes to the repository
+* *diff*       Show changes between commits, commit and working tree, etc
+* *direct*     Allows the direct execution of a git command that is not available in the API yet
+* *fetch*      Download objects and refs from another repository
+* *grep*       Print lines matching a pattern
+* *init*       Create an empty Git repository or reinitialize an existing one
+* *log*        Show commit logs
+* *merge*      Join two or more development histories together
+* *mv*         Move or rename a file, a directory, or a symlink
+* *pull*       Fetch from and integrate with another repository or a local branch
+* *push*       Update remote refs along with associated objects
+* *rebase*     Forward-port local commits to the updated upstream head
+* *remote*     Manage set of tracked repositories
+* *reset*      Reset current HEAD to the specified state
+* *rm*         Remove files from the working tree and from the index
+* *show*       Show various types of objects
+* *status*     Show the working tree status
+* *tag*        Create, list, delete or verify a tag object signed with GPG
 
 Options parameter is to tweak the 'exec' command as described in:
 https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback
@@ -66,7 +121,7 @@ https://nodejs.org/api/child_process.html#child_process_child_process_exec_comma
 There is a special situation. Once you stablish cwd in the options param, it will be maintained through the rest of thecommands
 
 ### Git.direct(command,options);
-Git direct allows the direct execution of a Git command implicitly on the 'command' param
+Git direct allows the direct execution of a Git command that is not available in the API yet
 
 * Examples
 ```javascript
@@ -84,17 +139,69 @@ Git direct allows the direct execution of a Git command implicitly on the 'comma
 #### Git.add(command, options);
 Same as 'git add [command]'
 
+* To add all files in /tmp/git and the commit them
+```javascript
+Git.add('*', {cwd:'/tmp/git'}).then(function(msg){
+    return Git.commit('-m "My commit"');
+}).then(function(res){
+    console.log(res);
+}.fail(function(err){
+    console.error(err);
+});
+```
+
 #### Git.bisect(command, options);
 Same as 'git bisect [command]'
 
 #### Git.branch(command, options);
 Same as 'git branch [command]'
 
+* To get current branch
+
+```javascript
+    Git.branch().then(function(res){
+        console.log(res)            // master
+    }).catch(function(err){
+        console.log(err();
+    });
+```
+
+
 #### Git.checkout(command, options);
 Same as 'git checkout [command]'
 
+* To change to branch test
+
+```javascript
+    Git.checkout('test').then(function(res){
+        console.log(res);
+    }).catch(function(err){
+        console.error(err);
+    });
+```
+
 #### Git.clone(command, options);
 Same as 'git clone [command]'
+
+* To clone a git repo on current folder
+
+```javascript
+    Git.clone('https://github.com/sayden/git-command-line.git').then(function(res){
+        console.log(res);
+    }).catch(function(err){
+        console.error(err);
+    });
+```
+
+* To clone a git repo on /tmp
+
+```javascript
+    Git.clone('https://github.com/sayden/git-command-line.git /tmp').then(function(res){
+        console.log(res);
+    }).catch(function(err){
+        console.error(err);
+    });
+```
 
 #### Git.commit(command, options);
 Same as 'git commit [command]'
@@ -182,7 +289,7 @@ Same as 'git tag [command]'
 * Examples
 ```javascript
 Git.tag('0.1.0').then(function(res){
-    console.log(res)';
+    console.log(res);
 
 #### Git.setWorkingDirectory(newPath)
 Sets the working path for the following git commands
