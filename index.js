@@ -6,7 +6,6 @@ var Q = require('q');
 
 /**
  * @module GitCommandLine
- * @constructor
  * @param {string} The working path to set git to work in
  */
 module.exports = function(workingPath){
@@ -24,8 +23,7 @@ module.exports = function(workingPath){
 
     /**
      * Sets the current working directory of git
-     * @method setWorkingDirectory
-     * @param {string} New path to execute git commands on
+     * @param {string} newPath New path to execute git commands on
      */
     this.setWorkingDirectory = function(newPath){
         workingDirectory = newPath;
