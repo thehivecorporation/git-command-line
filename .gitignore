@@ -30,3 +30,6 @@ node_modules
 
 # Idea files
 .idea/*
+
+# Documentation
+doc
