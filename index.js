@@ -340,7 +340,7 @@ module.exports = function(workingPath){
      */
     var prepareOptions = function(options){
         if (!options) {
-            var options = {
+            options = {
                 cwd: workingDirectory
             };
 
@@ -356,8 +356,9 @@ module.exports = function(workingPath){
      * @param command   The command that will be executed
      */
     var printCommandExecution = function(command, options){
-        if(logging || false)
+        if(logging || false){
             console.log('Executing: ' + 'git ' + command + ' with options ', options);
+        }
     };
 
     /**
@@ -365,8 +366,9 @@ module.exports = function(workingPath){
      * @param res
      */
     var printCommandResponse = function(res){
-        if(logging || false)
+        if(logging || false){
             console.log('Logging ---> ', res);
+        }
     };
 
     /**

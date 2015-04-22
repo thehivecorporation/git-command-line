@@ -91,7 +91,7 @@ Git.commit('-m "My commit"')
 
 Initially, following commands are available:
 
-* **add**        Add file contents to the index
+* [**add**        Add file contents to the index](#Git.add)
 * **bisect**     Find by binary search the change that introduced a bug
 * **branch**     List, create, or delete branches
 * **checkout**   Checkout a branch or paths to the working tree
@@ -136,7 +136,7 @@ Git direct allows the direct execution of a Git command that is not available in
     });
 ```
 
-#### Git.add(command, options);
+#### Git.add(command, options)
 Same as 'git add [command]'
 
 * To add all files in /tmp/git and the commit them
