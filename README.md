@@ -354,6 +354,7 @@ Same as 'git tag [command]'
 Git.tag('0.1.0').then(function(res){
     console.log(res);
 
+```
 
 
 ### Set Working directory

@@ -39,19 +39,6 @@ module.exports = function(grunt) {
                 src: ['coverage']
             }
         },
-
-        env: {
-            coverage: {
-                APP_DIR_FOR_CODE_COVERAGE: 'coverage/instrument/'
-            }
-        },
-        instrument: {
-            files: 'index.js',
-            options: {
-                lazy: true,
-                basePath: 'coverage/instrument/'
-            }
-        },
         mochaTest: {
             quick:{
                 options: {
@@ -66,40 +53,39 @@ module.exports = function(grunt) {
                 src: ['coverage/instrument/*.js']
             }
         },
-        storeCoverage: {
-            options: {
-                dir: 'coverage/reports'
+
+        mocha_istanbul: {
+            coverage: {
+                src: 'test', // a folder works nicely
+                options: {
+                    mask: '*.js'
+                }
             }
         },
-        makeReport: {
-            src: 'coverage/reports/**/*.json',
-            options: {
-                type: 'lcov',
-                dir: 'coverage/reports',
-                print: 'detail'
+        publish: {
+            main: {
+                src: '*'
             }
         }
-
     });
 
     //Load tasks
     require('load-grunt-tasks')(grunt);
 
     //Test task
-    grunt.registerTask('test', ['jshint', 'mochaTest:quick']);
-
-    //Coverage
-    grunt.registerTask('coverage', ['jshint', 'clean:coverage', 'env:coverage', 'instrument', 'mochaTest', 'storeCoverage' ]);
+    grunt.registerTask('test', ['jshint', 'clean:coverage', 'mocha_istanbul:coverage']);
 
     //Documentation
     grunt.registerTask('doc', ['jsdoc']);
 
+    //Coverage
+    grunt.registerTask('coverage', ['clean:coverage', 'mocha_istanbul:coverage']);
+
+    //Publish
+    grunt.registerTask('publish', ['clean:coverage', 'jshint', 'mocha_istanbul:coverage']);
+
     // Default task(s).
     grunt.registerTask('default', ['mochaTest']);
 
-
-
-    //DELETE
-    grunt.registerTask('testcoverage', ['clean:coverage', 'env:coverage', 'instrument', 'mochaTest:quick', 'storeCoverage', 'makeReport']);
 
 };
