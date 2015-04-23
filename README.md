@@ -37,7 +37,7 @@ Git.[git command]([string parameters], [options])
 
 =======
 
-### Some examples
+## Some examples
 
 * To Git init /tmp/git folder, add all files on it, commit, add a new remote and push master to it
 
@@ -87,40 +87,46 @@ Git.commit('-m "My commit"')
 
 =======
 
-### API
+## API
 
 Initially, following commands are available:
 
-* **add**        Add file contents to the index
-* **bisect**     Find by binary search the change that introduced a bug
-* **branch**     List, create, or delete branches
-* **checkout**   Checkout a branch or paths to the working tree
-* **clone**      Clone a repository into a new directory
-* **commit**     Record changes to the repository
-* **diff**       Show changes between commits, commit and working tree, etc
-* **direct**     Allows the direct execution of a git command that is not available in the API yet
-* **fetch**      Download objects and refs from another repository
-* **grep**       Print lines matching a pattern
-* **init**       Create an empty Git repository or reinitialize an existing one
-* **log**        Show commit logs
-* **merge**      Join two or more development histories together
-* **mv**         Move or rename a file, a directory, or a symlink
-* **pull**       Fetch from and integrate with another repository or a local branch
-* **push**       Update remote refs along with associated objects
-* **rebase**     Forward-port local commits to the updated upstream head
-* **remote**     Manage set of tracked repositories
-* **reset**      Reset current HEAD to the specified state
-* **rm**         Remove files from the working tree and from the index
-* **show**       Show various types of objects
-* **status**     Show the working tree status
-* **tag**        Create, list, delete or verify a tag object signed with GPG
+* [**add**                  Add file contents to the index](#add)
+* [**bisect**               Find by binary search the change that introduced a bug](#bisect)
+* [**branch**               List, create, or delete branches](#branch)
+* [**checkout**             Checkout a branch or paths to the working tree](#checkout)
+* [**clone**                Clone a repository into a new directory](#clone)
+* [**commit**               Record changes to the repository](#commit)
+* [**diff**                 Show changes between commits, commit and working tree, etc](#diff)
+* [**direct**               Allows the direct execution of a git command that is not available in the API yet](#direct)
+* [**fetch**                Download objects and refs from another repository](#fetch)
+* [**grep**                 Print lines matching a pattern](#grep)
+* [**init**                 Create an empty Git repository or reinitialize an existing one](#init)
+* [**log**                  Show commit logs](#log)
+* [**merge**                Join two or more development histories together](#merge)
+* [**mv**                   Move or rename a file, a directory, or a symlink](#mv)
+* [**pull**                 Fetch from and integrate with another repository or a local branch](#pull)
+* [**push**                 Update remote refs along with associated objects](#push)
+* [**rebase**               Forward-port local commits to the updated upstream head](#rebase)
+* [**remote**               Manage set of tracked repositories](#remote)
+* [**reset**                Reset current HEAD to the specified state](#reset)
+* [**rm**                   Remove files from the working tree and from the index](#rm)
+* [**show**                 Show various types of objects](#show)
+* [**status**               Show the working tree status](#status)
+* [**tag**                  Create, list, delete or verify a tag object signed with GPG](#tag)
+* [**setWorkingDirectory**  Sets the working path for the following git commands](#set-working-directory)
+* [**getWorkingDirectory**  Returns the current working path](#get-working-directory)
+* [**setLog**               Sets the logging of the Git command line responses](#set-log)
+* [**getLog**               Returns the state of the logging](#get-log)
 
 Options parameter is to tweak the 'exec' command as described in:
 https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback
 
-There is a special situation. Once you stablish cwd in the options param, it will be maintained through the rest of thecommands
+There is a special situation. Once you stablish cwd in the options param, it will be maintained through the rest of the commands
 
-### Git.direct(command,options);
+### Direct
+
+#### Git.direct(command,options);
 Git direct allows the direct execution of a Git command that is not available in the API yet
 
 * Examples
@@ -135,8 +141,9 @@ Git direct allows the direct execution of a Git command that is not available in
         console.error(err)
     });
 ```
+### Add
 
-#### Git.add(command, options);
+#### Git.add(command, options)
 Same as 'git add [command]'
 
 * To add all files in /tmp/git and the commit them
@@ -149,9 +156,12 @@ Git.add('*', {cwd:'/tmp/git'}).then(function(msg){
     console.error(err);
 });
 ```
+### Bisect
 
 #### Git.bisect(command, options);
 Same as 'git bisect [command]'
+
+### Branch
 
 #### Git.branch(command, options);
 Same as 'git branch [command]'
@@ -166,6 +176,7 @@ Same as 'git branch [command]'
     });
 ```
 
+### Checkout
 
 #### Git.checkout(command, options);
 Same as 'git checkout [command]'
@@ -179,6 +190,7 @@ Same as 'git checkout [command]'
         console.error(err);
     });
 ```
+### Clone
 
 #### Git.clone(command, options);
 Same as 'git clone [command]'
@@ -202,6 +214,7 @@ Same as 'git clone [command]'
         console.error(err);
     });
 ```
+### Commit
 
 #### Git.commit(command, options);
 Same as 'git commit [command]'
@@ -219,47 +232,94 @@ Same as 'git commit [command]'
       });
 ```
 
+### Diff
+
 #### Git.diff(command, options);
 Same as 'git diff [command]'
+
+
+### Fetch
 
 #### Git.fetch(command, options);
 Same as 'git fetch [command]'
 
+### Grep
+
 #### Git.grep(command, options);
 Same as 'git grep [command]'
+
+### Init
 
 #### Git.init(command, options);
 Same as 'git init [command]'
 
+
+### Log
+
 #### Git.log(command, options);
 Same as 'git log [command]'
+
+### Merge
 
 #### Git.merge(command, options);
 Same as 'git merge [command]'
 
+
+### MV
+
 #### Git.mv(command, options);
 Same as 'git mv [command]'
+
+
+### Pull
 
 #### Git.pull(command, options);
 Same as 'git pull [command]'
 
+
+### Push
+
 #### Git.push(command, options);
 Same as 'git push [command]'
+
+
+
+### Rebase
 
 #### Git.rebase(command, options);
 Same as 'git rebase [command]'
 
+
+
+### Remote
+
 #### Git.remote(command, options);
 Same as 'git remote [command]'
+
+
+
+### Reset
 
 #### Git.reset(command, options);
 Same as 'git reset [command]'
 
+
+
+### RM
+
 #### Git.rm(command, options);
 Same as 'git rm [command]'
 
+
+
+### Show
+
 #### Git.show(command, options);
 Same as 'git show [command]' or simple 'git show' if no param specified
+
+
+
+### Status
 
 #### Git.status(command, options);
 Same as 'git status [command]' or simply 'git status' if no param specified
@@ -283,6 +343,9 @@ Same as 'git status [command]' or simply 'git status' if no param specified
     });
 ```
 
+
+### Tag
+
 #### Git.tag(command, options);
 Same as 'git tag [command]'
 
@@ -291,14 +354,29 @@ Same as 'git tag [command]'
 Git.tag('0.1.0').then(function(res){
     console.log(res);
 
+
+
+### Set Working directory
+
 #### Git.setWorkingDirectory(newPath)
 Sets the working path for the following git commands
+
+
+
+### Get working directory
 
 #### Git.getWorkingpath()
 Returns the current working path
 
+
+
+### Set Log
+
 #### Git.setLog(boolean)
 Sets the logging of the Git command line responses
 
+
+
+### Get Log
 #### Git.getLog()
 Returns the state of the logging
