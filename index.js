@@ -12,7 +12,7 @@ module.exports = function(options){
     options = options || {};
 
     var workingDirectory = options.workingPath || '.';
-    var testMode = options.testMode || false;
+    var dryRun = options.dryRun || false;
     var logging = options.logging || false;
 
     /**
@@ -52,19 +52,19 @@ module.exports = function(options){
 
     /**
      * Sets the test mode
-     * @param {string} testMode Test mode
+     * @param {string} dryRun Test mode
      */
-    this.setTestMode = function(testMode){
-        testMode = testMode || false;
+    this.setDryRun = function(dryRun){
+        dryRun = dryRun || false;
     };
 
     /**
      * Returns the test mode
-     * @method getTestMode
+     * @method getDryRun
      * @returns {boolean} The test mode
      */
-    this.getTestMode = function(){
-        return testMode;
+    this.getDryRun = function(){
+        return dryRun;
     };
 
     /**
@@ -420,7 +420,7 @@ module.exports = function(options){
         //Activate-Deactivate command logging execution
         printCommandExecution(command, options);
 
-        if (testMode) {
+        if (dryRun) {
             return defer.resolve({});
         }
 
