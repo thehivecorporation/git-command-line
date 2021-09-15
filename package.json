@@ -1,10 +1,10 @@
 {
   "name": "git-command-line",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "A wrapper for command line git with promises",
   "main": "index.js",
   "scripts": {
-    "test":"mocha",
+    "test": "mocha",
     "test_old": "istanbul cover node_modules/.bin/_mocha ; CODECLIMATE_REPO_TOKEN=8a405b00f1c4f57094cdd768148c11a3bd905bf3b03f29edc4236bfec304614d codeclimate < coverage/lcov.info"
   },
   "repository": {

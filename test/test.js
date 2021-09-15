@@ -1,5 +1,6 @@
 /**
  * Created by Mario Castro on 4/18/15.
+ * Updated by Fabio Costa on 9/15/2021.
  */
 
 var Git = require('../index');
