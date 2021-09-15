@@ -64,7 +64,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.add = function (command, options) {
-        return execPromise('add ' + prepareCommand(command), options);
+        return execPromise('git add ' + prepareCommand(command), options);
     };
 
     /**
@@ -75,7 +75,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.bisect = function (command, options) {
-        return execPromise('bisect ' + prepareCommand(command), options);
+        return execPromise('git bisect ' + prepareCommand(command), options);
     };
 
     /**
@@ -86,7 +86,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.branch = function (command, options) {
-        return execPromise('branch ' + prepareCommand(command), options);
+        return execPromise('git branch ' + prepareCommand(command), options);
     };
 
     /**
@@ -97,7 +97,18 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.checkout = function (command, options) {
-        return execPromise('checkout ' + prepareCommand(command), options);
+        return execPromise('git checkout ' + prepareCommand(command), options);
+    };
+
+    /**
+     * Executes 'git clean '
+     * @method clean
+     * @param command
+     * @param options
+     * @returns {promise|*|Q.promise}
+     */
+    this.clean = function (command, options) {
+        return execPromise('git clean ' + prepareCommand(command), options);
     };
 
     /**
@@ -108,7 +119,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.clone = function (command, options) {
-        return execPromise('clone ' + prepareCommand(command), options);
+        return execPromise('git clone ' + prepareCommand(command), options);
     };
 
     /**
@@ -119,7 +130,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.commit = function (command, options) {
-        return execPromise('commit ' + prepareCommand(command), options);
+        return execPromise('git commit ' + prepareCommand(command), options);
     };
 
     /**
@@ -130,7 +141,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.config = function (command, options) {
-        return execPromise('config ' + prepareCommand(command), options);
+        return execPromise('git config ' + prepareCommand(command), options);
     };
 
     /**
@@ -141,7 +152,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.diff = function (command, options) {
-        return execPromise('diff ' + prepareCommand(command), options);
+        return execPromise('git diff ' + prepareCommand(command), options);
     };
 
     /**
@@ -152,7 +163,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.fetch = function (command, options) {
-        return execPromise('fetch ' + prepareCommand(command), options);
+        return execPromise('git fetch ' + prepareCommand(command), options);
     };
 
     /**
@@ -163,7 +174,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.grep = function (command, options) {
-        return execPromise('grep ' + prepareCommand(command), options);
+        return execPromise('git grep ' + prepareCommand(command), options);
     };
 
     /**
@@ -174,7 +185,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.init = function (command, options) {
-        return execPromise('init ' + prepareCommand(command), options);
+        return execPromise('git init ' + prepareCommand(command), options);
     };
 
     /**
@@ -184,7 +195,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.log = function (command, options) {
-        return execPromise('log ' + prepareCommand(command), options);
+        return execPromise('git log ' + prepareCommand(command), options);
     };
 
     /**
@@ -195,7 +206,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.merge = function (command, options) {
-        return execPromise('merge ' + prepareCommand(command), options);
+        return execPromise('git merge ' + prepareCommand(command), options);
     };
 
     /**
@@ -206,7 +217,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.mv = function (command, options) {
-        return execPromise('mv ' + prepareCommand(command), options);
+        return execPromise('git mv ' + prepareCommand(command), options);
     };
 
     /**
@@ -217,7 +228,18 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.pull = function (command, options) {
-        return execPromise('pull ' + prepareCommand(command), options);
+        return execPromise('git pull ' + prepareCommand(command), options);
+    };
+
+    /**
+     * Executes 'hub pull-request '
+     * @method pullRequest
+     * @param command
+     * @param options
+     * @returns {promise|*|Q.promise}
+     */
+    this.pullRequest = function (command, options) {
+        return execPromise('hub pull-request ' + prepareCommand(command), options);
     };
 
     /**
@@ -228,7 +250,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.push = function (command, options) {
-        return execPromise('push ' + prepareCommand(command), options);
+        return execPromise('git push ' + prepareCommand(command), options);
     };
 
     /**
@@ -239,7 +261,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.rebase = function (command, options) {
-        return execPromise('rebase ' + prepareCommand(command), options);
+        return execPromise('git rebase ' + prepareCommand(command), options);
     };
 
     /**
@@ -250,7 +272,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.remote = function (command, options) {
-        return execPromise('remote ' + prepareCommand(command), options);
+        return execPromise('git remote ' + prepareCommand(command), options);
     };
 
     /**
@@ -261,7 +283,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.reset = function (command, options) {
-        return execPromise('reset ' + prepareCommand(command), options);
+        return execPromise('git reset ' + prepareCommand(command), options);
     };
 
     /**
@@ -272,7 +294,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.rm = function (command, options) {
-        return execPromise('rm ' + prepareCommand(command), options);
+        return execPromise('git rm ' + prepareCommand(command), options);
     };
 
     /**
@@ -283,7 +305,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.show = function (command, options) {
-        return execPromise('show ' + prepareCommand(command), options);
+        return execPromise('git show ' + prepareCommand(command), options);
     };
 
     /**
@@ -294,7 +316,7 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.status = function (command, options) {
-        return execPromise('status ' + prepareCommand(command), options);
+        return execPromise('git status ' + prepareCommand(command), options);
     };
 
     /**
@@ -305,18 +327,18 @@ module.exports = function(workingPath){
      * @returns {promise|*|Q.promise}
      */
     this.tag = function (command, options) {
-        return execPromise('tag ' + prepareCommand(command), options);
+        return execPromise('git tag ' + prepareCommand(command), options);
     };
 
     /**
      * Executes a method over git directly. Like 'git [command]'
-     * @method direct
+     * @method git
      * @param command
      * @param options
      * @returns {promise|*|Q.promise}
      */
-    this.direct = function(command, options){
-        return execPromise(prepareCommand(command), options);
+    this.git = function(command, options){
+        return execPromise('git ' + prepareCommand(command), options);
     };
 
 
@@ -377,7 +399,7 @@ module.exports = function(workingPath){
      * @param options   Options available in exec command https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback
      * @returns {promise|*|Q.promise}
      */
-    var execPromise = function (command, options) {
+    var execPromise = function (application, command, options) {
         var exec = require('child_process').exec;
         var defer = Q.defer();
 
@@ -387,7 +409,7 @@ module.exports = function(workingPath){
         //Activate-Deactivate command logging execution
         printCommandExecution(command, options);
 
-        exec('git ' + prepareCommand(command), options, function (err, stdout, stderr) {
+        exec(prepareCommand(command), options, function (err, stdout, stderr) {
             //Activate-deactivate err and out logging
             printCommandResponse({err:err, stdout:stdout, stderr:stderr});
 

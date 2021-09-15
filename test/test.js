@@ -184,7 +184,7 @@ describe('GIT-CLI', function(){
         });
 
         it('should allow the direct execution of a command', function(done){
-            Git.direct('status').then(function(res){
+            Git.git('status').then(function(res){
                 res.res.should.contain('On branch');
                 done();
             }).fail(done);
