@@ -6,27 +6,21 @@ var Q = require('q');
 
 /**
  * @module GitCommandLine
- * @param {string} The working path to set git to work in
+ * @param {string} workingPath working path to set git to work in
  */
-module.exports = function(workingPath){
-    var workingDirectory = '.';
-    var logging = false;
+module.exports = function(options){
+    options = options || {};
 
-    /**
-     * Checks if the working path has been added in the constructor to set it
-     */
-    if(workingPath){
-        workingDirectory = workingPath;
-    } else {
-        //Do nothing
-    }
+    var workingDirectory = options.workingPath || '.';
+    var testMode = options.testMode || false;
+    var logging = options.logging || false;
 
     /**
      * Sets the current working directory of git
      * @param {string} newPath New path to execute git commands on
      */
     this.setWorkingDirectory = function(newPath){
-        workingDirectory = newPath;
+        workingDirectory = newPath || '.';
     };
 
     /**
@@ -44,7 +38,7 @@ module.exports = function(workingPath){
      * @param {boolean} isLogging
      */
     this.setLog = function(isLogging){
-        logging = isLogging;
+        logging = isLogging || false;
     };
 
     /**
@@ -54,6 +48,23 @@ module.exports = function(workingPath){
      */
     this.getLog = function(){
         return logging;
+    };
+
+    /**
+     * Sets the test mode
+     * @param {string} testMode Test mode
+     */
+    this.setTestMode = function(testMode){
+        testMode = testMode || false;
+    };
+
+    /**
+     * Returns the test mode
+     * @method getTestMode
+     * @returns {boolean} The test mode
+     */
+    this.getTestMode = function(){
+        return testMode;
     };
 
     /**
@@ -408,6 +419,10 @@ module.exports = function(workingPath){
 
         //Activate-Deactivate command logging execution
         printCommandExecution(command, options);
+
+        if (testMode) {
+            return defer.resolve({});
+        }
 
         exec(prepareCommand(command), options, function (err, stdout, stderr) {
             //Activate-deactivate err and out logging
