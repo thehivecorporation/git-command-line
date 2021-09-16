@@ -32,7 +32,7 @@
   "homepage": "https://github.com/sayden/git-cmd",
   "dependencies": {},
   "devDependencies": {
-    "should": "13.2.3",
+    "should": "^13.2.3",
     "codeclimate-test-reporter": "^0.0.4",
     "grunt": "^0.4.5",
     "grunt-codeclimate": "0.0.1-1",
@@ -44,8 +44,8 @@
     "grunt-mocha-istanbul": "^2.4.0",
     "grunt-mocha-test": "^0.12.7",
     "grunt-publish": "0.0.5",
-    "istanbul": "0.3.13",
+    "istanbul": "0.4.5",
     "load-grunt-tasks": "^3.1.0",
-    "mocha": "^2.2.4"
+    "mocha": "9.1.1"
   }
 }

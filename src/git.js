@@ -9,24 +9,16 @@ var prepareExecOptions = require('./prepareExecOptions');
 /**
  * @module Git
  * @param {object} options
- * @param {string} options.workingPath working path to set git to work in
+ * @param {string} options.workingDirectory working path to set git to work in
  */
 function Git(options) {
     options = options || {};
 
-    this.workingDirectory = options.workingPath || '.';
+    this.workingDirectory = options.workingDirectory || '.';
     this.dryRun = options.dryRun || false;
     this.logging = options.logging || false;
     this.forceExit = options.forceExit || false;
 }
-
-/**
- * Sets the current working directory of git
- * @param {string} newPath New path to execute git commands on
- */
-Git.prototype.setWorkingDirectory = function(newPath) {
-    this.workingDirectory = newPath || '.';
-};
 
 /**
  * Executes 'git add '
