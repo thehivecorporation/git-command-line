@@ -12,7 +12,7 @@ var process = require('child_process');
  * @param {string} options.dryRun - Do not run command, only logs them
  * @param {string} options.logging - Logs all commands
  * @param {string} options.forceExit - Forces the app to exit when an error occurs
- * @returns {object}
+ * @returns {string|object} stdout or an error object
  */
  module.exports = function execSync(command, execOptions, options) {
 
@@ -29,7 +29,7 @@ var process = require('child_process');
     if (options.dryRun) {
         console.log(command, execOptions);
     
-        return {};
+        return '';
     }
 
     if (options.logging) {
@@ -38,11 +38,7 @@ var process = require('child_process');
     
     try {
     
-        var stdout = process.execSync(command, execOptions);
-        
-        return {
-            stdout: stdout
-        };
+        return process.execSync(command, execOptions);
 
     } catch (ex) {
 

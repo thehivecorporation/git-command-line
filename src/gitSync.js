@@ -39,7 +39,7 @@ function GitSync(options) {
  * @returns {GitSync}
  */
 GitSync.prototype.add = function (commandOptions, execOptions) {
-    this.stdout = execSync('git add ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git add ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -52,7 +52,7 @@ GitSync.prototype.add = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.bisect = function (commandOptions, execOptions) {
-    this.stdout = execSync('git bisect ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git bisect ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -65,7 +65,7 @@ GitSync.prototype.bisect = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.branch = function (commandOptions, execOptions) {
-    this.stdout = execSync('git branch ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git branch ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -78,7 +78,7 @@ GitSync.prototype.branch = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.checkout = function (commandOptions, execOptions) {
-    this.stdout = execSync('git checkout ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git checkout ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -91,7 +91,7 @@ GitSync.prototype.checkout = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.clean = function (commandOptions, execOptions) {
-    this.stdout = execSync('git clean ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git clean ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -104,7 +104,7 @@ GitSync.prototype.clean = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.clone = function (commandOptions, execOptions) {
-    this.stdout = execSync('git clone ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git clone ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -117,7 +117,7 @@ GitSync.prototype.clone = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.commit = function (commandOptions, execOptions) {
-    this.stdout = execSync('git commit ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git commit ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -130,7 +130,7 @@ GitSync.prototype.commit = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.config = function (commandOptions, execOptions) {
-    this.stdout = execSync('git config ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git config ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -143,7 +143,7 @@ GitSync.prototype.config = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.diff = function (commandOptions, execOptions) {
-    this.stdout = execSync('git diff ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git diff ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -156,7 +156,7 @@ GitSync.prototype.diff = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.fetch = function (commandOptions, execOptions) {
-    this.stdout = execSync('git fetch ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git fetch ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -169,7 +169,7 @@ GitSync.prototype.fetch = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.grep = function (commandOptions, execOptions) {
-    this.stdout = execSync('git grep ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git grep ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -182,7 +182,7 @@ GitSync.prototype.grep = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.init = function (commandOptions, execOptions) {
-    this.stdout = execSync('git init ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git init ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -194,7 +194,7 @@ GitSync.prototype.init = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.log = function (commandOptions, execOptions) {
-    this.stdout = execSync('git log ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git log ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -207,7 +207,7 @@ GitSync.prototype.log = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.merge = function (commandOptions, execOptions) {
-    this.stdout = execSync('git merge ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git merge ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -220,7 +220,7 @@ GitSync.prototype.merge = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.mv = function (commandOptions, execOptions) {
-    this.stdout = execSync('git mv ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git mv ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -233,7 +233,7 @@ GitSync.prototype.mv = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.pull = function (commandOptions, execOptions) {
-    this.stdout = execSync('git pull ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git pull ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -246,7 +246,7 @@ GitSync.prototype.pull = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.pullRequest = function (commandOptions, execOptions) {
-    this.stdout = execSync('hub pull-request ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('hub pull-request ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -259,7 +259,7 @@ GitSync.prototype.pullRequest = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.push = function (commandOptions, execOptions) {
-    this.stdout = execSync('git push ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git push ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -272,7 +272,7 @@ GitSync.prototype.push = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.rebase = function (commandOptions, execOptions) {
-    this.stdout = execSync('git rebase ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git rebase ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -285,7 +285,7 @@ GitSync.prototype.rebase = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.remote = function (commandOptions, execOptions) {
-    this.stdout = execSync('git remote ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git remote ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -298,7 +298,7 @@ GitSync.prototype.remote = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.reset = function (commandOptions, execOptions) {
-    this.stdout = execSync('git reset ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git reset ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -311,7 +311,7 @@ GitSync.prototype.reset = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.rm = function (commandOptions, execOptions) {
-    this.stdout = execSync('git rm ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git rm ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -324,7 +324,7 @@ GitSync.prototype.rm = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.show = function (commandOptions, execOptions) {
-    this.stdout = execSync('git show ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git show ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -337,7 +337,7 @@ GitSync.prototype.show = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.status = function (commandOptions, execOptions) {
-    this.stdout = execSync('git status ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git status ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -350,7 +350,7 @@ GitSync.prototype.status = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.tag = function (commandOptions, execOptions) {
-    this.stdout = execSync('git tag ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git tag ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
@@ -363,7 +363,7 @@ GitSync.prototype.tag = function (commandOptions, execOptions) {
  * @returns {GitSync}
  */
 GitSync.prototype.git = function(commandOptions, execOptions) {
-    this.stdout = execSync('git ' + prepareCommandOptions(commandOptions), execOptions, this.options).stdout;
+    this.stdout = execSync('git ' + prepareCommandOptions(commandOptions), execOptions, this.options);
 
     return this;
 };
