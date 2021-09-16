@@ -37,8 +37,8 @@ function Git(options) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.add = function (commandOptions, execOptions) {
-    return execPromise('git add ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.add = function (commandOptions, execOptions, options) {
+    return execPromise('git add ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -48,8 +48,8 @@ Git.prototype.add = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.bisect = function (commandOptions, execOptions) {
-    return execPromise('git bisect ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.bisect = function (commandOptions, execOptions, options) {
+    return execPromise('git bisect ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -59,8 +59,8 @@ Git.prototype.bisect = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.branch = function (commandOptions, execOptions) {
-    return execPromise('git branch ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.branch = function (commandOptions, execOptions, options) {
+    return execPromise('git branch ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -70,8 +70,8 @@ Git.prototype.branch = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.checkout = function (commandOptions, execOptions) {
-    return execPromise('git checkout ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.checkout = function (commandOptions, execOptions, options) {
+    return execPromise('git checkout ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -81,8 +81,8 @@ Git.prototype.checkout = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.clean = function (commandOptions, execOptions) {
-    return execPromise('git clean ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.clean = function (commandOptions, execOptions, options) {
+    return execPromise('git clean ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -92,8 +92,8 @@ Git.prototype.clean = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.clone = function (commandOptions, execOptions) {
-    return execPromise('git clone ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.clone = function (commandOptions, execOptions, options) {
+    return execPromise('git clone ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -103,8 +103,8 @@ Git.prototype.clone = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.commit = function (commandOptions, execOptions) {
-    return execPromise('git commit ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.commit = function (commandOptions, execOptions, options) {
+    return execPromise('git commit ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -114,8 +114,8 @@ Git.prototype.commit = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.config = function (commandOptions, execOptions) {
-    return execPromise('git config ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.config = function (commandOptions, execOptions, options) {
+    return execPromise('git config ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -125,8 +125,8 @@ Git.prototype.config = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.diff = function (commandOptions, execOptions) {
-    return execPromise('git diff ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.diff = function (commandOptions, execOptions, options) {
+    return execPromise('git diff ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -136,8 +136,8 @@ Git.prototype.diff = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.fetch = function (commandOptions, execOptions) {
-    return execPromise('git fetch ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.fetch = function (commandOptions, execOptions, options) {
+    return execPromise('git fetch ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -147,8 +147,8 @@ Git.prototype.fetch = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.grep = function (commandOptions, execOptions) {
-    return execPromise('git grep ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.grep = function (commandOptions, execOptions, options) {
+    return execPromise('git grep ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -158,8 +158,8 @@ Git.prototype.grep = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.init = function (commandOptions, execOptions) {
-    return execPromise('git init ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.init = function (commandOptions, execOptions, options) {
+    return execPromise('git init ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -168,8 +168,8 @@ Git.prototype.init = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.log = function (commandOptions, execOptions) {
-    return execPromise('git log ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.log = function (commandOptions, execOptions, options) {
+    return execPromise('git log ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -179,8 +179,8 @@ Git.prototype.log = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.merge = function (commandOptions, execOptions) {
-    return execPromise('git merge ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.merge = function (commandOptions, execOptions, options) {
+    return execPromise('git merge ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -190,8 +190,8 @@ Git.prototype.merge = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.mv = function (commandOptions, execOptions) {
-    return execPromise('git mv ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.mv = function (commandOptions, execOptions, options) {
+    return execPromise('git mv ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -201,8 +201,8 @@ Git.prototype.mv = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.pull = function (commandOptions, execOptions) {
-    return execPromise('git pull ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.pull = function (commandOptions, execOptions, options) {
+    return execPromise('git pull ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -212,8 +212,8 @@ Git.prototype.pull = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.pullRequest = function (commandOptions, execOptions) {
-    return execPromise('hub pull-request ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.pullRequest = function (commandOptions, execOptions, options) {
+    return execPromise('hub pull-request ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -223,8 +223,8 @@ Git.prototype.pullRequest = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.push = function (commandOptions, execOptions) {
-    return execPromise('git push ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.push = function (commandOptions, execOptions, options) {
+    return execPromise('git push ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -234,8 +234,8 @@ Git.prototype.push = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.rebase = function (commandOptions, execOptions) {
-    return execPromise('git rebase ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.rebase = function (commandOptions, execOptions, options) {
+    return execPromise('git rebase ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -245,8 +245,8 @@ Git.prototype.rebase = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.remote = function (commandOptions, execOptions) {
-    return execPromise('git remote ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.remote = function (commandOptions, execOptions, options) {
+    return execPromise('git remote ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -256,8 +256,8 @@ Git.prototype.remote = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.reset = function (commandOptions, execOptions) {
-    return execPromise('git reset ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.reset = function (commandOptions, execOptions, options) {
+    return execPromise('git reset ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -267,8 +267,8 @@ Git.prototype.reset = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.rm = function (commandOptions, execOptions) {
-    return execPromise('git rm ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.rm = function (commandOptions, execOptions, options) {
+    return execPromise('git rm ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -278,8 +278,8 @@ Git.prototype.rm = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.show = function (commandOptions, execOptions) {
-    return execPromise('git show ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.show = function (commandOptions, execOptions, options) {
+    return execPromise('git show ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -289,8 +289,8 @@ Git.prototype.show = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.status = function (commandOptions, execOptions) {
-    return execPromise('git status ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.status = function (commandOptions, execOptions, options) {
+    return execPromise('git status ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -300,8 +300,8 @@ Git.prototype.status = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.tag = function (commandOptions, execOptions) {
-    return execPromise('git tag ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.tag = function (commandOptions, execOptions, options) {
+    return execPromise('git tag ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 /**
@@ -311,8 +311,8 @@ Git.prototype.tag = function (commandOptions, execOptions) {
  * @param {object} [execOptions]
  * @returns {promise<object>}
  */
-Git.prototype.git = function(commandOptions, execOptions) {
-    return execPromise('git ' + prepareCommandOptions(commandOptions), execOptions, this.options);
+Git.prototype.git = function(commandOptions, execOptions, options) {
+    return execPromise('git ' + prepareCommandOptions(commandOptions), execOptions, options || this.options);
 };
 
 module.exports = Git;
