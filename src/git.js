@@ -14,12 +14,19 @@ var prepareCommandOptions = require('./prepareCommandOptions');
  * @param {string} options.forceExit - Forces the app to exit when an error occurs
  */
 function Git(options) {
-    this.options = options || {};
+    options = options || {};
 
     this.workingDirectory = options.workingDirectory || '.';
     this.dryRun = options.dryRun || false;
     this.logging = options.logging || false;
     this.forceExit = options.forceExit || false;
+    
+    this.options = {
+        workingDirectory: this.workingDirectory,
+        dryRun: this.dryRun,
+        logging: this.logging,
+        forceExit: this.forceExit
+    };
 }
 
 /**
