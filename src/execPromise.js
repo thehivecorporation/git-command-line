@@ -8,8 +8,6 @@ var process = require('child_process');
  */
  module.exports = function execPromise(command, execOptions, dryRun, logging, forceExit) {
 
-    execOptions = prepareOptions(execOptions);
-
     if (dryRun) {
         console.log(command, execOptions);
         return Promise.resolve({});
