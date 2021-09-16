@@ -25,8 +25,8 @@ function Git(options) {
 /**
  * Executes 'git add '
  * @method add
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.add = function (commandOptions, execOptions) {
@@ -36,8 +36,8 @@ Git.prototype.add = function (commandOptions, execOptions) {
 /**
  * Executes 'git bisect '
  * @method bisect
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.bisect = function (commandOptions, execOptions) {
@@ -47,8 +47,8 @@ Git.prototype.bisect = function (commandOptions, execOptions) {
 /**
  * Executes 'git branch '
  * @method branch
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.branch = function (commandOptions, execOptions) {
@@ -58,8 +58,8 @@ Git.prototype.branch = function (commandOptions, execOptions) {
 /**
  * Executes 'git checkout '
  * @method checkout
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.checkout = function (commandOptions, execOptions) {
@@ -69,8 +69,8 @@ Git.prototype.checkout = function (commandOptions, execOptions) {
 /**
  * Executes 'git clean '
  * @method clean
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.clean = function (commandOptions, execOptions) {
@@ -80,8 +80,8 @@ Git.prototype.clean = function (commandOptions, execOptions) {
 /**
  * Executes 'git clone '
  * @method clone
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.clone = function (commandOptions, execOptions) {
@@ -91,8 +91,8 @@ Git.prototype.clone = function (commandOptions, execOptions) {
 /**
  * Executes 'git commit '
  * @method commit
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.commit = function (commandOptions, execOptions) {
@@ -102,8 +102,8 @@ Git.prototype.commit = function (commandOptions, execOptions) {
 /**
  * Executes 'git config '
  * @method config
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.config = function (commandOptions, execOptions) {
@@ -113,8 +113,8 @@ Git.prototype.config = function (commandOptions, execOptions) {
 /**
  * Executes 'git diff '
  * @method diff
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.diff = function (commandOptions, execOptions) {
@@ -124,8 +124,8 @@ Git.prototype.diff = function (commandOptions, execOptions) {
 /**
  * Executes 'git fetch '
  * @method fetch
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.fetch = function (commandOptions, execOptions) {
@@ -135,8 +135,8 @@ Git.prototype.fetch = function (commandOptions, execOptions) {
 /**
  * Executes 'git grep '
  * @method grep
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.grep = function (commandOptions, execOptions) {
@@ -146,8 +146,8 @@ Git.prototype.grep = function (commandOptions, execOptions) {
 /**
  * Executes 'git init '
  * @method init
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.init = function (commandOptions, execOptions) {
@@ -156,8 +156,8 @@ Git.prototype.init = function (commandOptions, execOptions) {
 
 /**
  * Executes 'git log '
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.log = function (commandOptions, execOptions) {
@@ -167,8 +167,8 @@ Git.prototype.log = function (commandOptions, execOptions) {
 /**
  * Executes 'git merge '
  * @method merge
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.merge = function (commandOptions, execOptions) {
@@ -178,8 +178,8 @@ Git.prototype.merge = function (commandOptions, execOptions) {
 /**
  * Executes 'git mv '
  * @method mv
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.mv = function (commandOptions, execOptions) {
@@ -189,8 +189,8 @@ Git.prototype.mv = function (commandOptions, execOptions) {
 /**
  * Executes 'git pull'
  * @method pull
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.pull = function (commandOptions, execOptions) {
@@ -200,8 +200,8 @@ Git.prototype.pull = function (commandOptions, execOptions) {
 /**
  * Executes 'hub pull-request '
  * @method pullRequest
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.pullRequest = function (commandOptions, execOptions) {
@@ -211,8 +211,8 @@ Git.prototype.pullRequest = function (commandOptions, execOptions) {
 /**
  * Executes 'git push '
  * @method push
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.push = function (commandOptions, execOptions) {
@@ -222,8 +222,8 @@ Git.prototype.push = function (commandOptions, execOptions) {
 /**
  * Executes 'git rebase '
  * @method rebase
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.rebase = function (commandOptions, execOptions) {
@@ -233,8 +233,8 @@ Git.prototype.rebase = function (commandOptions, execOptions) {
 /**
  * Executes 'git remote '
  * @method remote
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.remote = function (commandOptions, execOptions) {
@@ -244,8 +244,8 @@ Git.prototype.remote = function (commandOptions, execOptions) {
 /**
  * Executes 'git reset '
  * @method reset
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.reset = function (commandOptions, execOptions) {
@@ -255,8 +255,8 @@ Git.prototype.reset = function (commandOptions, execOptions) {
 /**
  * Executes 'git rm '
  * @method rm
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.rm = function (commandOptions, execOptions) {
@@ -266,8 +266,8 @@ Git.prototype.rm = function (commandOptions, execOptions) {
 /**
  * Executes 'git show '
  * @method show
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.show = function (commandOptions, execOptions) {
@@ -277,8 +277,8 @@ Git.prototype.show = function (commandOptions, execOptions) {
 /**
  * Executes 'git status '
  * @method status
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.status = function (commandOptions, execOptions) {
@@ -288,8 +288,8 @@ Git.prototype.status = function (commandOptions, execOptions) {
 /**
  * Executes 'git tag '
  * @method tag
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.tag = function (commandOptions, execOptions) {
@@ -299,8 +299,8 @@ Git.prototype.tag = function (commandOptions, execOptions) {
 /**
  * Executes a method over git directly. Like 'git [commandOptions]'
  * @method git
- * @param {string} commandOptions
- * @param {object} execOptions
+ * @param {string} [commandOptions]
+ * @param {object} [execOptions]
  * @returns {promise<object>}
  */
 Git.prototype.git = function(commandOptions, execOptions) {

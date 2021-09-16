@@ -6,5 +6,9 @@
  module.exports = function prepareCommandOptions(commandOptions) {
     commandOptions = commandOptions || '';
 
+    if (typeof commandOptions !== 'string') {
+        commandOptions = '';
+    }
+
     return commandOptions;
 };
