@@ -5,461 +5,387 @@
 var process = require('child_process');
 
 /**
+ * Prepares the commandOptions string to be valid in case that is not included in the params
+ * @param commandOptions
+ * @returns {*}
+ */
+var prepareCommandOptions = function(commandOptions) {
+    if (commandOptions == null) {
+        return '';
+    }
+
+    return commandOptions;
+};
+
+/**
  * @module GitCommandLine
  * @param {string} workingPath working path to set git to work in
  */
-module.exports = function(options){
+function Git(options) {
     options = options || {};
 
-    var workingDirectory = options.workingPath || '.';
-    var dryRun = options.dryRun || false;
-    var logging = options.logging || false;
-    var forceExit = options.forceExit || false;
+    this.workingDirectory = options.workingPath || '.';
+    this.dryRun = options.dryRun || false;
+    this.logging = options.logging || false;
+    this.forceExit = options.forceExit || false;
+}
 
-    /**
-     * Sets the current working directory of git
-     * @param {string} newPath New path to execute git commands on
-     */
-    this.setWorkingDirectory = function(newPath){
-        workingDirectory = newPath || '.';
-    };
+/**
+ * Sets the current working directory of git
+ * @param {string} newPath New path to execute git commands on
+ */
+Git.prototype.setWorkingDirectory = function(newPath) {
+    this.workingDirectory = newPath || '.';
+};
 
-    /**
-     * Returns the current working directory where git is executing the commands
-     * @method getWorkingDirectory
-     * @returns {string} The current working directory
-     */
-    this.getWorkingDirectory = function(){
-        return workingDirectory;
-    };
+/**
+ * Executes 'git add '
+ * @method add
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.add = function (commandOptions, execOptions) {
+    return this._execPromise('git add ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Activates/Deactivates logging
-     * @method setLog
-     * @param {boolean} isLogging
-     */
-    this.setLog = function(isLogging){
-        logging = isLogging || false;
-    };
+/**
+ * Executes 'git bisect '
+ * @method bisect
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.bisect = function (commandOptions, execOptions) {
+    return this._execPromise('git bisect ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Returns current state of logging
-     * @method getLog
-     * @returns {boolean}
-     */
-    this.getLog = function(){
-        return logging;
-    };
+/**
+ * Executes 'git branch '
+ * @method
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.branch = function (commandOptions, execOptions) {
+    return this._execPromise('git branch ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Sets the test mode
-     * @method setDryRun
-     * @param {string} dryRun Test mode
-     */
-    this.setDryRun = function(dryRun){
-        dryRun = dryRun || false;
-    };
+/**
+ * Executes 'git checkout '
+ * @method checkout
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.checkout = function (commandOptions, execOptions) {
+    return this._execPromise('git checkout ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Returns the test mode
-     * @method getDryRun
-     * @returns {boolean} The test mode
-     */
-    this.getDryRun = function(){
-        return dryRun;
-    };
+/**
+ * Executes 'git clean '
+ * @method clean
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.clean = function (commandOptions, execOptions) {
+    return this._execPromise('git clean ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Forces to exit if error occurs
-     * @method setForceExit
-     * @param {string} forceExit
-     */
-    this.setForceExit = function(forceExit){
-        forceExit = forceExit || false;
-    };
+/**
+ * Executes 'git clone '
+ * @method clone
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.clone = function (commandOptions, execOptions) {
+    return this._execPromise('git clone ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Returns the force exit flag
-     * @method getForceExit
-     * @returns {boolean} The force exit flag
-     */
-    this.getForceExit = function(){
-        return forceExit;
-    };
+/**
+ * Executes 'git commit '
+ * @method commit
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.commit = function (commandOptions, execOptions) {
+    return this._execPromise('git commit ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git add '
-     * @method add
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.add = function (command, options) {
-        return execPromise('git add ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git config '
+ * @method config
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.config = function (commandOptions, execOptions) {
+    return this._execPromise('git config ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git bisect '
-     * @method bisect
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.bisect = function (command, options) {
-        return execPromise('git bisect ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git diff '
+ * @method diff
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.diff = function (commandOptions, execOptions) {
+    return this._execPromise('git diff ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git branch '
-     * @method
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.branch = function (command, options) {
-        return execPromise('git branch ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git fetch '
+ * @method fetch
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.fetch = function (commandOptions, execOptions) {
+    return this._execPromise('git fetch ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git checkout '
-     * @method checkout
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.checkout = function (command, options) {
-        return execPromise('git checkout ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git grep '
+ * @method grep
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.grep = function (commandOptions, execOptions) {
+    return this._execPromise('git grep ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git clean '
-     * @method clean
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.clean = function (command, options) {
-        return execPromise('git clean ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git init '
+ * @method init
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.init = function (commandOptions, execOptions) {
+    return this._execPromise('git init ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git clone '
-     * @method clone
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.clone = function (command, options) {
-        return execPromise('git clone ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git log '
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.log = function (commandOptions, execOptions) {
+    return this._execPromise('git log ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git commit '
-     * @method commit
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.commit = function (command, options) {
-        return execPromise('git commit ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git merge '
+ * @method merge
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.merge = function (commandOptions, execOptions) {
+    return this._execPromise('git merge ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git config '
-     * @method config
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.config = function (command, options) {
-        return execPromise('git config ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git mv '
+ * @method mv
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.mv = function (commandOptions, execOptions) {
+    return this._execPromise('git mv ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git diff '
-     * @method diff
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.diff = function (command, options) {
-        return execPromise('git diff ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git pull'
+ * @method pull
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.pull = function (commandOptions, execOptions) {
+    return this._execPromise('git pull ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git fetch '
-     * @method fetch
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.fetch = function (command, options) {
-        return execPromise('git fetch ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'hub pull-request '
+ * @method pullRequest
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.pullRequest = function (commandOptions, execOptions) {
+    return this._execPromise('hub pull-request ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git grep '
-     * @method grep
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.grep = function (command, options) {
-        return execPromise('git grep ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git push '
+ * @method push
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.push = function (commandOptions, execOptions) {
+    return this._execPromise('git push ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git init '
-     * @method init
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.init = function (command, options) {
-        return execPromise('git init ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git rebase '
+ * @method rebase
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.rebase = function (commandOptions, execOptions) {
+    return this._execPromise('git rebase ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git log '
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.log = function (command, options) {
-        return execPromise('git log ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git remote '
+ * @method remote
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.remote = function (commandOptions, execOptions) {
+    return this._execPromise('git remote ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git merge '
-     * @method merge
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.merge = function (command, options) {
-        return execPromise('git merge ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git reset '
+ * @method reset
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.reset = function (commandOptions, execOptions) {
+    return this._execPromise('git reset ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git mv '
-     * @method mv
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.mv = function (command, options) {
-        return execPromise('git mv ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git rm '
+ * @method rm
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.rm = function (commandOptions, execOptions) {
+    return this._execPromise('git rm ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git pull'
-     * @method pull
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.pull = function (command, options) {
-        return execPromise('git pull ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git show '
+ * @method show
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.show = function (commandOptions, execOptions) {
+    return this._execPromise('git show ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'hub pull-request '
-     * @method pullRequest
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.pullRequest = function (command, options) {
-        return execPromise('hub pull-request ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git status '
+ * @method status
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.status = function (commandOptions, execOptions) {
+    return this._execPromise('git status ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git push '
-     * @method push
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.push = function (command, options) {
-        return execPromise('git push ' + prepareCommand(command), options);
-    };
+/**
+ * Executes 'git tag '
+ * @method tag
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.tag = function (commandOptions, execOptions) {
+    return this._execPromise('git tag ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git rebase '
-     * @method rebase
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.rebase = function (command, options) {
-        return execPromise('git rebase ' + prepareCommand(command), options);
-    };
+/**
+ * Executes a method over git directly. Like 'git [commandOptions]'
+ * @method git
+ * @param commandOptions
+ * @param execOptions
+ * @returns {promise<object>}
+ */
+Git.prototype.git = function(commandOptions, execOptions) {
+    return this._execPromise('git ' + prepareCommandOptions(commandOptions), execOptions);
+};
 
-    /**
-     * Executes 'git remote '
-     * @method remote
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.remote = function (command, options) {
-        return execPromise('git remote ' + prepareCommand(command), options);
-    };
+/**
+ * Prepare execOptions to use the set working directory in the following commands
+ * @param execOptions
+ * @returns {*}
+ */
+Git.prototype._prepareOptions = function (execOptions) {
+    if (!execOptions) {
+        execOptions = {
+            cwd: this.workingDirectory
+        };
+    } else if (!execOptions.cwd) {
+        execOptions.cwd = this.workingDirectory;
+    }
 
-    /**
-     * Executes 'git reset '
-     * @method reset
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.reset = function (command, options) {
-        return execPromise('git reset ' + prepareCommand(command), options);
-    };
+    return execOptions;
+}
 
-    /**
-     * Executes 'git rm '
-     * @method rm
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.rm = function (command, options) {
-        return execPromise('git rm ' + prepareCommand(command), options);
-    };
+/**
+ * Main function to use the commandOptions line tools to execute git commands
+ * @param command - Command to execute. Do not include 'git ' prefix
+ * @param execOptions - Options available in exec commandOptions https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback
+ * @returns {promise<object>}
+ */
+ Git.prototype._execPromise = function(command, execOptions) {
 
-    /**
-     * Executes 'git show '
-     * @method show
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.show = function (command, options) {
-        return execPromise('git show ' + prepareCommand(command), options);
-    };
+    execOptions = this._prepareOptions(execOptions);
 
-    /**
-     * Executes 'git status '
-     * @method status
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.status = function (command, options) {
-        return execPromise('git status ' + prepareCommand(command), options);
-    };
+    var logging = this.logging;
+    var forceExit = this.forceExit;
 
-    /**
-     * Executes 'git tag '
-     * @method tag
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.tag = function (command, options) {
-        return execPromise('git tag ' + prepareCommand(command), options);
-    };
+    if (this.dryRun) {
+        console.log(command, execOptions);
+        return Promise.resolve({});
+    }
 
-    /**
-     * Executes a method over git directly. Like 'git [command]'
-     * @method git
-     * @param command
-     * @param options
-     * @returns {promise<object>}
-     */
-    this.git = function(command, options){
-        return execPromise('git ' + prepareCommand(command), options);
-    };
+    if (logging) {
+        console.log(command, execOptions);
+    }
+    
+    return new Promise(function (resolve, reject) {
 
+        process.exec(command, execOptions, function (error, stdout, stderr) {
+            var resp = {stdout: stdout, stderr: stderr, error: error};
 
-    /**
-     * Prepares the command string to be valid in case that is not included in the params
-     * @param command
-     * @returns {*}
-     */
-    var prepareCommand = function(command){
-        if (command === undefined){
-            return '';
-        }
-
-        return command;
-    };
-
-    /**
-     * Prepare options to use the set working directory in the following commands
-     * @param options
-     * @returns {*}
-     */
-    var prepareOptions = function(options){
-        if (!options) {
-            options = {
-                cwd: workingDirectory
-            };
-
-            return options;
-        }
-
-        workingDirectory = options.cwd;
-        
-        return options;
-    };
-
-    /**
-     * Prints logs of command excution if activated
-     * @param command   The command that will be executed
-     */
-    var printCommandExecution = function(command, options){
-        if (logging || false){
-            console.log('Executing: ' + 'git ' + command + ' with options ', options);
-        }
-    };
-
-    /**
-     * Prints the response of an exec execution
-     * @param res
-     */
-    var printCommandResponse = function(res){
-        if (logging || false){
-            console.log('Logging ---> ', res);
-        }
-    };
-
-    /**
-     * Main function to use the command line tools to execute git commands
-     * @param command   Command to execute. Do not include 'git ' prefix
-     * @param options   Options available in exec command https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback
-     * @returns {promise<object>}
-     */
-    var execPromise = function (command, options) {
-        
-        return new Promise(function (resolve, reject) {
-            // Prepare the options object to be valid
-            options = prepareOptions(options);
-
-            printCommandExecution(command, options);
-
-            if (dryRun) {
-                return resolve({});
+            if (logging) {
+                console.log(res);
             }
 
-            process.exec(prepareCommand(command), options, function (error, stdout, stderr) {
-                var resp = {stdout: stdout, stderr: stderr, error: error};
-
-                printCommandResponse(resp);
-
-                if (error) {
-                    if (forceExit) {
+            if (error) {
+                if (forceExit) {
+                    if (logging) {
                         console.log('Something went wrong with command', command);
-                        process.exit(1);
                     }
-
-                    reject(resp);
-                } else {
-                    resolve(resp);
+                    process.exit(1);
                 }
-            });
 
+                reject(resp);
+            } else {
+                resolve(resp);
+            }
         });
-    };
+
+    });
 };
+
+module.exports = Git;

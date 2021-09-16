@@ -19,6 +19,8 @@ var file1 = 'asdf';
 var file2 = 'qwert';
 var commitMessage = 'My commit';
 
+var git;
+
 describe('GIT-CLI', function(){
     before(function(done){
         //Create a testing repository with two files
@@ -30,12 +32,12 @@ describe('GIT-CLI', function(){
             done();
         });
 
-        Git = new Git(gitRepo);
+        git = new Git(gitRepo);
     });
 
     describe('Main Functions: ', function(){
         it('should create a local repo', function(done){
-            Git.init('--bare ' + localRepo, {cwd: localRepo}).then(function(msg){
+            git.init('--bare ' + localRepo, {cwd: localRepo}).then(function(msg){
                 msg.res.should.contain('Initialized');
                 fs.existsSync(localRepo + '/HEAD').should.be.true;
                 done();
@@ -43,7 +45,7 @@ describe('GIT-CLI', function(){
         });
 
         it('should initialize a git repository', function(done){
-            Git.init(gitRepo).then(function(mesg){
+            git.init(gitRepo).then(function(mesg){
                 fs.exists(gitRepo + '/.git', function(exists){
                     exists.should.be.true;
                     mesg.res.should.contain('Initialized');
@@ -53,35 +55,35 @@ describe('GIT-CLI', function(){
         });
 
         it('should add files from a folder', function(done){
-            Git.setWorkingDirectory(gitRepo);
-            Git.add('*').then(function(msg){
+            git.setWorkingDirectory(gitRepo);
+            git.add('*').then(function(msg){
                 msg.res.should.be.empty;
                 done();
             }).fail(done);
         });
 
         it('should add the credentials of user to commit', function(done){
-            Git.config('--local user.name "Mario Castro"').then(function(msg){
+            git.config('--local user.name "Mario Castro"').then(function(msg){
                 done();
             }).fail(done);
         });
 
         it('should add the credentials of email to commit', function(done){
-            Git.config('--local user.email "mariocaster@gmail.com"').then(function(msg){
+            git.config('--local user.email "mariocaster@gmail.com"').then(function(msg){
                 done();
             }).fail(done);
         });
 
         it('should add credentials', function(done){
-            Git.config('--local user.name "Mario Castro"').then(function(msg){
-                return Git.config('--local user.email "mariocaster@gmail.com"');
+            git.config('--local user.name "Mario Castro"').then(function(msg){
+                return git.config('--local user.email "mariocaster@gmail.com"');
             }).then(function(msg){
                 done();
             }).fail(done);
         });
 
         it('should commit files', function(done){
-            Git.commit('-m "' + commitMessage + '"', {cwd: gitRepo })
+            git.commit('-m "' + commitMessage + '"', {cwd: gitRepo })
                 .then(function(mesg){
                     fs.existsSync(gitRepo + '/.git/COMMIT_EDITMSG').should.be.true;
                     done();
@@ -89,9 +91,9 @@ describe('GIT-CLI', function(){
         });
 
         it('should show/log info of the commit', function(done){
-            Git.show().then(function(msg){
+            git.show().then(function(msg){
                 msg.res.should.contain('Author: Mario Castro').and.to.contain(commitMessage);
-                return Git.log().then(function(msg){
+                return git.log().then(function(msg){
                     msg.res.should.contain('Author: Mario Castro').and.to.contain(commitMessage);
                     done();
                 });
@@ -99,14 +101,14 @@ describe('GIT-CLI', function(){
         });
 
         it('should add the local "remote"', function(done){
-            Git.remote('add origin ' + localRepo).then(function(msg){
+            git.remote('add origin ' + localRepo).then(function(msg){
                 msg.res.should.be.empty;
                 done();
             }).fail(done);
         });
 
         it('should push to local remote', function(done){
-            Git.push('-u origin master').then(function(msg){
+            git.push('-u origin master').then(function(msg){
                 msg.res.should.contain('Branch');
                 msg.out.should.contain('To ' + localRepo);
                 done();
@@ -114,21 +116,21 @@ describe('GIT-CLI', function(){
         });
 
         it('should clone a git repo', function(done){
-            Git.clone(localRepo + ' ' + extRepo).then(function(msg){
+            git.clone(localRepo + ' ' + extRepo).then(function(msg){
                 fs.existsSync(extRepo + "/.git").should.be.true;
                 done();
             }).fail(done);
         });
 
         it('should show the status', function(done){
-            Git.status().then(function(res){
+            git.status().then(function(res){
                 res.res.should.contain('On branch ').and.to.contain('nothing to commit');
                 done();
             }).fail(done);
         });
 
         it('should pull from the local repo', function(done){
-            Git.pull().then(function(res){
+            git.pull().then(function(res){
                 res.out.should.be.empty;
                 res.res.should.contain('Already up-to-date');
                 done();
@@ -137,7 +139,7 @@ describe('GIT-CLI', function(){
 
         it('should add a new branch called test', function(done){
             var newBranch = 'test';
-            Git.branch(newBranch, {cwd: gitRepo })
+            git.branch(newBranch, {cwd: gitRepo })
                 .then(function(msg){
                     msg.res.should.be.empty;
                     done();
@@ -146,21 +148,21 @@ describe('GIT-CLI', function(){
 
         it('should checkout to the newly created test branch', function(done){
             var newBranch = 'test';
-            Git.checkout(newBranch).then(function(msg){
+            git.checkout(newBranch).then(function(msg){
                 msg.res.should.be.empty;
                 done();
             }).fail(done);
         });
 
         it('should delete the file1', function(done){
-            Git.rm(file1).then(function(res){
+            git.rm(file1).then(function(res){
                 res.res.should.contain('rm \'' + file1);
                 done();
             }).fail(done);
         });
 
         it('should reset the repo', function(done){
-            Git.reset().then(function(res){
+            git.reset().then(function(res){
                 res.out.should.be.empty;
                 res.res.should.contain('Unstaged changes');
                 done();
@@ -168,7 +170,7 @@ describe('GIT-CLI', function(){
         });
 
         it('should allow the use of the bisect command', function(done){
-            Git.bisect('start').then(function(res){
+            git.bisect('start').then(function(res){
                 res.res.should.be.empty;
                 res.out.should.be.empty;
                 done();
@@ -176,7 +178,7 @@ describe('GIT-CLI', function(){
         });
 
         it('should allow the use of the rebase command', function(done){
-            Git.rebase('master').then(function(res){
+            git.rebase('master').then(function(res){
                 done()
             }).fail(function(err){
                 err.stderr.should.contain('Cannot rebase');
@@ -185,21 +187,21 @@ describe('GIT-CLI', function(){
         });
 
         it('should allow the direct execution of a command', function(done){
-            Git.git('status').then(function(res){
+            git.git('status').then(function(res){
                 res.res.should.contain('On branch');
                 done();
             }).fail(done);
         });
 
         it('should allow the use of the diff command', function(done){
-            Git.diff(file2).then(function(res){
+            git.diff(file2).then(function(res){
                 res.res.should.be.empty;
                 done();
             }).fail(done);
         });
 
         it('should allow to fetch content', function(done){
-            Git.fetch().then(function(res){
+            git.fetch().then(function(res){
                 res.res.should.be.empty;
                 done()
             }).fail(done);
@@ -209,7 +211,7 @@ describe('GIT-CLI', function(){
             //Add some text into the file2
             var exampleCode = 'example code';
             exec('echo "example code" >> ' + file2, {cwd:gitRepo}, function(err, stdout, stderr){
-                Git.grep('example', {cwd:gitRepo}).then(function(res){
+                git.grep('example', {cwd:gitRepo}).then(function(res){
                     res.out.should.be.empty;
                     res.res.should.contain(exampleCode);
                     done()
@@ -219,12 +221,12 @@ describe('GIT-CLI', function(){
 
         it('should rename the file2 to zxcvb and the back to original name', function(done){
             var newName = 'zxcvb';
-            Git.mv(file2 + ' ' + newName).then(function(res){
+            git.mv(file2 + ' ' + newName).then(function(res){
                 res.res.should.be.empty;
                 res.out.should.be.empty;
                 fs.existsSync(gitRepo + '/' + newName).should.be.true;
                 fs.existsSync(gitRepo + '/' + file2).should.be.false;
-                return Git.mv(newName + ' ' + file2);
+                return git.mv(newName + ' ' + file2);
             }).then(function(res){
                 res.res.should.be.empty;
                 res.out.should.be.empty;
@@ -236,14 +238,14 @@ describe('GIT-CLI', function(){
 
         it('should merge the test branch on master',function(done){
             //First, we're in test so lets add all changes and commit them
-            Git.add('*').then(function(res){
+            git.add('*').then(function(res){
                 res.res.should.be.empty;
-                return Git.commit('-m "new commit"');
+                return git.commit('-m "new commit"');
             }).then(function(res){
-                return Git.checkout('master');
+                return git.checkout('master');
             }).then(function(res){
                 //Now we're in master so merge the branch test
-                return Git.merge('test');
+                return git.merge('test');
             }).then(function(res){
                 res.out.should.be.empty;
                 res.res.should.contain('Updating').and.contain(file2);
@@ -251,20 +253,13 @@ describe('GIT-CLI', function(){
             }).fail(done);
         });
 
-        it('should set on and off logging', function(){
-            Git.setLog(true);
-            Git.getLog().should.be.true;
-            Git.setLog(false);
-            Git.getLog().should.be.false;
-        });
-
         it('should set and get the working directory', function(){
-            Git.setWorkingDirectory(gitRepo);
-            Git.getWorkingDirectory().should.be.equals(gitRepo);
+            git.setWorkingDirectory(gitRepo);
+            should(git.workingDirectory).be.equals(gitRepo);
         });
 
         it('should allow the execution of tag command', function(done){
-            Git.tag("-a 'asdf' -m 'asdf'").then(function(res){
+            git.tag("-a 'asdf' -m 'asdf'").then(function(res){
                 res.res.should.be.empty;
                 res.out.should.be.empty;
                 done();

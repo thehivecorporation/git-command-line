@@ -30,9 +30,7 @@
     "url": "https://github.com/sayden/git-cmd/issues"
   },
   "homepage": "https://github.com/sayden/git-cmd",
-  "dependencies": {
-    "q": "^1.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "chai": "^2.2.0",
     "codeclimate-test-reporter": "^0.0.4",
