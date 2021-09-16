@@ -14,6 +14,7 @@ module.exports = function(options){
     var workingDirectory = options.workingPath || '.';
     var dryRun = options.dryRun || false;
     var logging = options.logging || false;
+    var forceExit = options.forceExit || false;
 
     /**
      * Sets the current working directory of git
@@ -52,6 +53,7 @@ module.exports = function(options){
 
     /**
      * Sets the test mode
+     * @method setDryRun
      * @param {string} dryRun Test mode
      */
     this.setDryRun = function(dryRun){
@@ -65,6 +67,24 @@ module.exports = function(options){
      */
     this.getDryRun = function(){
         return dryRun;
+    };
+
+    /**
+     * Forces to exit if error occurs
+     * @method setForceExit
+     * @param {string} forceExit
+     */
+    this.setForceExit = function(forceExit){
+        forceExit = forceExit || false;
+    };
+
+    /**
+     * Returns the force exit flag
+     * @method getForceExit
+     * @returns {boolean} The force exit flag
+     */
+    this.getForceExit = function(){
+        return forceExit;
     };
 
     /**
@@ -429,6 +449,11 @@ module.exports = function(options){
                 printCommandResponse(resp);
 
                 if (error) {
+                    if (forceExit) {
+                        console.log('Something went wrong with command', command);
+                        process.exit(1);
+                    }
+
                     reject(resp);
                 } else {
                     resolve(resp);
