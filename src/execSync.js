@@ -1,5 +1,5 @@
 /**
- * Created by Fabio Costa on 9/15/2021.
+ * Created by Fabio Costa on 9/16/2021.
  */
 var process = require('child_process');
 
@@ -12,9 +12,9 @@ var process = require('child_process');
  * @param {string} options.dryRun - Do not run command, only logs them
  * @param {string} options.logging - Logs all commands
  * @param {string} options.forceExit - Forces the app to exit when an error occurs
- * @returns {promise<object>}
+ * @returns {object}
  */
- module.exports = function execPromise(command, execOptions, options) {
+ module.exports = function execSync(command, execOptions, options) {
 
     command = command || '';
 
@@ -28,41 +28,33 @@ var process = require('child_process');
 
     if (options.dryRun) {
         console.log(command, execOptions);
-
-        return Promise.resolve({});
+    
+        return {};
     }
 
     if (options.logging) {
         console.log(command, execOptions);
     }
     
-    return new Promise(function (resolve, reject) {
+    try {
+    
+        var stdout = process.execSync(command, execOptions);
+        
+        return {
+            stdout: stdout
+        };
 
-        process.exec(command, execOptions, function (error, stdout, stderr) {
-            var resp = {
-                stdout: stdout,
-                stderr: stderr,
-                error: error
-            };
+    } catch (ex) {
 
-            if (options.logging) {
-                console.log(resp);
+        if (options.forceExit) {
+            if (logging) {
+                console.log('Something went wrong with command', command);
             }
+            process.exit(1);
+        }
 
-            if (error) {
-                if (options.forceExit) {
-                    if (logging) {
-                        console.log('Something went wrong with command', command);
-                    }
-                    process.exit(1);
-                }
+        throw ex;
 
-                reject(resp);
-            } else {
-                resolve(resp);
-            }
-        });
-
-    });
+    }
 
 };
