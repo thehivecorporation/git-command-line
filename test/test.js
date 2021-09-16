@@ -57,19 +57,19 @@ describe('GIT-CLI', function(){
             git.add('*').then(function(res){
                 should(res.stdout).be.empty;
                 done();
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         });
 
         it('should add the credentials of user to commit', function(done){
             git.config('--local user.name "Mario Castro"').then(function(res){
                 done();
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         });
 
         it('should add the credentials of email to commit', function(done){
             git.config('--local user.email "mariocaster@gmail.com"').then(function(res){
                 done();
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         });
 
         it('should add credentials', function(done){
@@ -77,7 +77,7 @@ describe('GIT-CLI', function(){
                 return git.config('--local user.email "mariocaster@gmail.com"');
             }).then(function(res){
                 done();
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         });
 
         it('should commit files', function(done){
@@ -85,7 +85,7 @@ describe('GIT-CLI', function(){
                 .then(function(mesg){
                     should(fs.existsSync(gitRepo + '/.git/COMMIT_EDITres')).be.true;
                     done();
-                }).catch(function() {}).finally(done);
+                }).catch(function() {});
         });
 
         it('should show/log info of the commit', function(done){
@@ -102,7 +102,7 @@ describe('GIT-CLI', function(){
             git.remote('add origin ' + localRepo).then(function(res){
                 should(res.stdout).be.empty;
                 done();
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         });
 
         it('should push to local remote', function(done){
@@ -118,14 +118,14 @@ describe('GIT-CLI', function(){
                 should(fs.existsSync(extRepo + "/.git")).be.true;
                 done();
             });
-            // this one does not have a .finally(done);
+            // this one does not have a ;
         });
 
         it('should show the status', function(done){
             git.status().then(function(res){
                 should(res.stdout).containEql('On branch ').and.containEql('nothing to commit');
                 done();
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         });
 
         it('should pull from the local repo', function(done){
@@ -141,7 +141,7 @@ describe('GIT-CLI', function(){
                 .then(function(res){
                     should(res.stdout).be.empty;
                     done();
-                }).catch(function() {}).finally(done);
+                }).catch(function() {});
         });
 
         it('should checkout to the newly created test branch', function(done){
@@ -149,28 +149,28 @@ describe('GIT-CLI', function(){
             git.checkout(newBranch).then(function(res){
                 should(res.stdout).be.empty;
                 done();
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         });
 
         it('should delete the file1', function(done){
             git.rm(file1).then(function(res){
                 should(res.stdout).containEql('rm \'' + file1);
                 done();
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         });
 
         it('should reset the repo', function(done){
             git.reset().then(function(res){
                 should(res.stdout).containEql('Unstaged changes');
                 done();
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         });
 
         it('should allow the use of the bisect command', function(done){
             git.bisect('start').then(function(res){
                 should(res.stdout).be.empty;
                 done();
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         });
 
         it('should allow the use of the rebase command', function(done){
@@ -186,21 +186,21 @@ describe('GIT-CLI', function(){
             git.git('status').then(function(res){
                 should(res.stdout).containEql('On branch');
                 done();
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         });
 
         it('should allow the use of the diff command', function(done){
             git.diff(file2).then(function(res){
                 should(res.stdout).be.empty;
                 done();
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         });
 
         it('should allow to fetch content', function(done){
             git.fetch().then(function(res){
                 should(res.stdout).be.empty;
                 done()
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         });
 
         it('should allow to use of command grep', function(done){
@@ -210,7 +210,7 @@ describe('GIT-CLI', function(){
                 git.grep('example', {cwd:gitRepo}).then(function(res){
                     should(res.stdout).containEql(exampleCode);
                     done()
-                }).catch(function() {}).finally(done);
+                }).catch(function() {});
             });
         });
 
@@ -227,7 +227,7 @@ describe('GIT-CLI', function(){
                 should(fs.existsSync(gitRepo + '/' + file2)).be.true;
                 should(fs.existsSync(gitRepo + '/' + newName)).be.false;
                 done();
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         });
 
         it('should merge the test branch on master',function(done){
@@ -248,14 +248,14 @@ describe('GIT-CLI', function(){
             }).then(function(res){
                 should(res.stdout).containEql('Updating').and.containEql(file2);
                 done();
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         });
 
         it('should allow the execution of tag command', function(done){
             git.tag("-a 'asdf' -m 'asdf'").then(function(res){
                 should(res.stdout).be.empty;
                 done();
-            }).catch(function() {}).finally(done);
+            }).catch(function() {});
         })
     });
 
