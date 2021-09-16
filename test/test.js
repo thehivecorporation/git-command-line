@@ -2,9 +2,11 @@
  * Created by Mario Castro on 4/18/15.
  * Updated by Fabio Costa on 9/15/2021.
  */
-var Git = require('../index');
+var { Git } = require('../index');
+
 var should = require('should');
 var exec = require('child_process').exec;
+
 var fs = require('fs');
 
 /** GLOBALS */
