@@ -19,6 +19,12 @@
     "cvs"
   ],
   "author": "Mario Castro <mariocaster@gmail.com>",
+  "contributors": [
+    {
+      "name" : "Fabio Costa",
+      "url" : "https://github.com/fab1o"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sayden/git-cmd/issues"
