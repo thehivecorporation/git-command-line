@@ -2,6 +2,7 @@
  * Created by Mario Castro (mariocaster@gmail.com) on 4/18/15.
  */
 
+var process = require('child_process');
 var Q = require('q');
 
 /**
@@ -359,11 +360,11 @@ module.exports = function(options){
      * @returns {*}
      */
     var prepareCommand = function(command){
-        if(command === undefined){
+        if (command === undefined){
             return '';
-        } else {
-            return command;
         }
+
+        return command;
     };
 
     /**
@@ -378,10 +379,11 @@ module.exports = function(options){
             };
 
             return options;
-        } else {
-            workingDirectory = options.cwd;
-            return options;
         }
+
+        workingDirectory = options.cwd;
+        
+        return options;
     };
 
     /**
@@ -389,7 +391,7 @@ module.exports = function(options){
      * @param command   The command that will be executed
      */
     var printCommandExecution = function(command, options){
-        if(logging || false){
+        if (logging || false){
             console.log('Executing: ' + 'git ' + command + ' with options ', options);
         }
     };
@@ -399,7 +401,7 @@ module.exports = function(options){
      * @param res
      */
     var printCommandResponse = function(res){
-        if(logging || false){
+        if (logging || false){
             console.log('Logging ---> ', res);
         }
     };
@@ -410,28 +412,27 @@ module.exports = function(options){
      * @param options   Options available in exec command https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback
      * @returns {promise|*|Q.promise}
      */
-    var execPromise = function (application, command, options) {
-        var exec = require('child_process').exec;
+    var execPromise = function (command, options) {
         var defer = Q.defer();
 
-        //Prepare the options object to be valid
+        // Prepare the options object to be valid
         options = prepareOptions(options);
 
-        //Activate-Deactivate command logging execution
         printCommandExecution(command, options);
 
         if (dryRun) {
             return defer.resolve({});
         }
 
-        exec(prepareCommand(command), options, function (err, stdout, stderr) {
-            //Activate-deactivate err and out logging
-            printCommandResponse({err:err, stdout:stdout, stderr:stderr});
+        process.exec(prepareCommand(command), options, function (error, stdout, stderr) {
+            var resp = {stdout: stdout, stderr: stderr, error: error};
 
-            if (err) {
-                defer.reject({err: err, stderr: stderr});
+            printCommandResponse(resp);
+
+            if (error) {
+                defer.reject(resp);
             } else {
-                defer.resolve({res:stdout, out:stderr});
+                defer.resolve(resp);
             }
         });
 
