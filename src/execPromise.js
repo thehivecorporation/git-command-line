@@ -20,10 +20,14 @@ var process = require('child_process');
     return new Promise(function (resolve, reject) {
 
         process.exec(command, execOptions, function (error, stdout, stderr) {
-            var resp = {stdout: stdout, stderr: stderr, error: error};
+            var resp = {
+                stdout: stdout,
+                stderr: stderr,
+                error: error
+            };
 
             if (logging) {
-                console.log(res);
+                console.log(resp);
             }
 
             if (error) {
@@ -41,4 +45,5 @@ var process = require('child_process');
         });
 
     });
+
 };

@@ -4,9 +4,7 @@
  * @returns {*}
  */
  module.exports = function prepareCommandOptions(commandOptions) {
-    if (commandOptions == null) {
-        return '';
-    }
+    commandOptions = commandOptions || '';
 
     return commandOptions;
 };
