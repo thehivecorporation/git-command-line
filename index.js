@@ -3,7 +3,6 @@
  */
 
 var process = require('child_process');
-var Q = require('q');
 
 /**
  * @module GitCommandLine
@@ -73,7 +72,7 @@ module.exports = function(options){
      * @method add
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.add = function (command, options) {
         return execPromise('git add ' + prepareCommand(command), options);
@@ -84,7 +83,7 @@ module.exports = function(options){
      * @method bisect
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.bisect = function (command, options) {
         return execPromise('git bisect ' + prepareCommand(command), options);
@@ -95,7 +94,7 @@ module.exports = function(options){
      * @method
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.branch = function (command, options) {
         return execPromise('git branch ' + prepareCommand(command), options);
@@ -106,7 +105,7 @@ module.exports = function(options){
      * @method checkout
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.checkout = function (command, options) {
         return execPromise('git checkout ' + prepareCommand(command), options);
@@ -117,7 +116,7 @@ module.exports = function(options){
      * @method clean
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.clean = function (command, options) {
         return execPromise('git clean ' + prepareCommand(command), options);
@@ -128,7 +127,7 @@ module.exports = function(options){
      * @method clone
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.clone = function (command, options) {
         return execPromise('git clone ' + prepareCommand(command), options);
@@ -139,7 +138,7 @@ module.exports = function(options){
      * @method commit
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.commit = function (command, options) {
         return execPromise('git commit ' + prepareCommand(command), options);
@@ -150,7 +149,7 @@ module.exports = function(options){
      * @method config
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.config = function (command, options) {
         return execPromise('git config ' + prepareCommand(command), options);
@@ -161,7 +160,7 @@ module.exports = function(options){
      * @method diff
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.diff = function (command, options) {
         return execPromise('git diff ' + prepareCommand(command), options);
@@ -172,7 +171,7 @@ module.exports = function(options){
      * @method fetch
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.fetch = function (command, options) {
         return execPromise('git fetch ' + prepareCommand(command), options);
@@ -183,7 +182,7 @@ module.exports = function(options){
      * @method grep
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.grep = function (command, options) {
         return execPromise('git grep ' + prepareCommand(command), options);
@@ -194,7 +193,7 @@ module.exports = function(options){
      * @method init
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.init = function (command, options) {
         return execPromise('git init ' + prepareCommand(command), options);
@@ -204,7 +203,7 @@ module.exports = function(options){
      * Executes 'git log '
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.log = function (command, options) {
         return execPromise('git log ' + prepareCommand(command), options);
@@ -215,7 +214,7 @@ module.exports = function(options){
      * @method merge
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.merge = function (command, options) {
         return execPromise('git merge ' + prepareCommand(command), options);
@@ -226,7 +225,7 @@ module.exports = function(options){
      * @method mv
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.mv = function (command, options) {
         return execPromise('git mv ' + prepareCommand(command), options);
@@ -237,7 +236,7 @@ module.exports = function(options){
      * @method pull
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.pull = function (command, options) {
         return execPromise('git pull ' + prepareCommand(command), options);
@@ -248,7 +247,7 @@ module.exports = function(options){
      * @method pullRequest
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.pullRequest = function (command, options) {
         return execPromise('hub pull-request ' + prepareCommand(command), options);
@@ -259,7 +258,7 @@ module.exports = function(options){
      * @method push
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.push = function (command, options) {
         return execPromise('git push ' + prepareCommand(command), options);
@@ -270,7 +269,7 @@ module.exports = function(options){
      * @method rebase
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.rebase = function (command, options) {
         return execPromise('git rebase ' + prepareCommand(command), options);
@@ -281,7 +280,7 @@ module.exports = function(options){
      * @method remote
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.remote = function (command, options) {
         return execPromise('git remote ' + prepareCommand(command), options);
@@ -292,7 +291,7 @@ module.exports = function(options){
      * @method reset
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.reset = function (command, options) {
         return execPromise('git reset ' + prepareCommand(command), options);
@@ -303,7 +302,7 @@ module.exports = function(options){
      * @method rm
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.rm = function (command, options) {
         return execPromise('git rm ' + prepareCommand(command), options);
@@ -314,7 +313,7 @@ module.exports = function(options){
      * @method show
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.show = function (command, options) {
         return execPromise('git show ' + prepareCommand(command), options);
@@ -325,7 +324,7 @@ module.exports = function(options){
      * @method status
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.status = function (command, options) {
         return execPromise('git status ' + prepareCommand(command), options);
@@ -336,7 +335,7 @@ module.exports = function(options){
      * @method tag
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.tag = function (command, options) {
         return execPromise('git tag ' + prepareCommand(command), options);
@@ -347,7 +346,7 @@ module.exports = function(options){
      * @method git
      * @param command
      * @param options
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     this.git = function(command, options){
         return execPromise('git ' + prepareCommand(command), options);
@@ -410,32 +409,32 @@ module.exports = function(options){
      * Main function to use the command line tools to execute git commands
      * @param command   Command to execute. Do not include 'git ' prefix
      * @param options   Options available in exec command https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback
-     * @returns {promise|*|Q.promise}
+     * @returns {promise<object>}
      */
     var execPromise = function (command, options) {
-        var defer = Q.defer();
+        
+        return new Promise(function (resolve, reject) {
+            // Prepare the options object to be valid
+            options = prepareOptions(options);
 
-        // Prepare the options object to be valid
-        options = prepareOptions(options);
+            printCommandExecution(command, options);
 
-        printCommandExecution(command, options);
-
-        if (dryRun) {
-            return defer.resolve({});
-        }
-
-        process.exec(prepareCommand(command), options, function (error, stdout, stderr) {
-            var resp = {stdout: stdout, stderr: stderr, error: error};
-
-            printCommandResponse(resp);
-
-            if (error) {
-                defer.reject(resp);
-            } else {
-                defer.resolve(resp);
+            if (dryRun) {
+                return resolve({});
             }
-        });
 
-        return defer.promise;
+            process.exec(prepareCommand(command), options, function (error, stdout, stderr) {
+                var resp = {stdout: stdout, stderr: stderr, error: error};
+
+                printCommandResponse(resp);
+
+                if (error) {
+                    reject(resp);
+                } else {
+                    resolve(resp);
+                }
+            });
+
+        });
     };
 };
