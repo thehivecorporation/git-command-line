@@ -1,15 +1,14 @@
 {
-  "name": "git-command-line",
-  "version": "0.2.0",
+  "name": "@fab1o/git-command-line",
+  "version": "1.0.0",
   "description": "A wrapper for command line git with promises",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "test_old": "istanbul cover node_modules/.bin/_mocha ; CODECLIMATE_REPO_TOKEN=8a405b00f1c4f57094cdd768148c11a3bd905bf3b03f29edc4236bfec304614d codeclimate < coverage/lcov.info"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sayden/git-command-line.git"
+    "url": "https://github.com/fab1o/git-command-line"
   },
   "keywords": [
     "git",
@@ -27,25 +26,12 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sayden/git-cmd/issues"
+    "url": "https://github.com/fab1o/git-command-line/issues"
   },
-  "homepage": "https://github.com/sayden/git-cmd",
+  "homepage": "https://github.com/fab1o/git-command-line",
   "dependencies": {},
   "devDependencies": {
     "should": "^13.2.3",
-    "codeclimate-test-reporter": "^0.0.4",
-    "grunt": "^0.4.5",
-    "grunt-codeclimate": "0.0.1-1",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-jshint": "^0.11.2",
-    "grunt-env": "^0.4.4",
-    "grunt-istanbul": "^0.5.0",
-    "grunt-jsdoc": "^0.5.8",
-    "grunt-mocha-istanbul": "^2.4.0",
-    "grunt-mocha-test": "^0.12.7",
-    "grunt-publish": "0.0.5",
-    "istanbul": "0.4.5",
-    "load-grunt-tasks": "^3.1.0",
     "mocha": "9.1.1"
   }
 }
