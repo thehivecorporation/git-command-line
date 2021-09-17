@@ -1,29 +1,17 @@
-![Build Status](https://travis-ci.org/sayden/git-command-line.svg?branch=master)
-[![Code Climate](https://codeclimate.com/github/sayden/git-cli/badges/gpa.svg)](https://codeclimate.com/github/sayden/git-cli)
-[![Test Coverage](https://codeclimate.com/github/sayden/git-cli/badges/coverage.svg)](https://codeclimate.com/github/sayden/git-cli)
-[![Dependency Status](https://gemnasium.com/sayden/git-cli.svg)](https://gemnasium.com/sayden/git-cli)
-[![Codacy Badge](https://www.codacy.com/project/badge/7bb54a42e9144690a2d07719edfe5249)](https://www.codacy.com/app/mariocaster/git-cli)
-![Codeship](https://codeship.com/projects/6965bf40-c8e1-0132-9fd7-5e07eb4da99e/status?branch=master)
-[![NPM Version](https://img.shields.io/npm/v/git-command-line.svg?style=flat)](https://www.npmjs.com/package/git-command-line)
-![Downloads](https://img.shields.io/npm/dm/git-command-line.svg?style=flat)
-![Tests](https://img.shields.io/badge/tests-28%2F28-green.svg)
-![Statements](https://img.shields.io/badge/Statements-97.78%25%20(%2088%2F90%20)-green.svg)
-![Branches](https://img.shields.io/badge/Branches-81.25%25%20(%2013%2F16%20)-green.svg)
-![Functions](https://img.shields.io/badge/Functions-100%25%20(%2035%2F35%20)-green.svg)
-![Lines](https://img.shields.io/badge/Lines-97.78%25%20(%2088%2F90%20)-green.svg)
+# @fab1o/git
 
-
-=======
-
-# git-command-line
 A wrapper for command line git with promises
+
+```sh
+npm install @fab1o/git
+```
 
 ## How to use it
 This is a wrapper for command line Git so, you must have git installed in your linux / mac machine (it has not been tested in windows yet).
 
 * Common sintax is:
 ```javascript
-var { Git, GitSync } = require('git-command-line');
+var { Git, GitSync } = require('@fab1o/git');
 
 var git = new Git('/tmp/gitTemp');
 var gitSync = new GitSync('/tmp/gitTemp');
@@ -53,7 +41,7 @@ catch(err) {
 * To Git init /tmp/git folder, add all files on it, commit, add a new remote and push master to it
 
 ```javascript
-var { Git } = require('git-command-line');
+var { Git } = require('@fab1o/git');
 
 //Variables
 var gitFolder = '/tmp/gitTemp';

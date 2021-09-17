@@ -1,5 +1,5 @@
 {
-  "name": "@fab1o/git-command-line",
+  "name": "@fab1o/git",
   "version": "1.0.0",
   "description": "A wrapper for command line git with promises",
   "main": "index.js",
